@@ -73,33 +73,8 @@
         <a href="{{ root }}en/index.html" class="nav-lang-switch" title="English">EN</a>
 {% endif %}
       </div>
-      <button class="hamburger" aria-label="{% if lang == "en" %}Open menu{% else %}Apri menu{% endif %}" aria-expanded="false" aria-controls="mobile-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
     </div>
   </nav>
-
-  <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
-    <div class="mobile-menu-inner">
-{% if lang == "en" %}
-      <a href="{{ root }}en/index.html">Home</a>
-      <a href="{{ root }}en/about.html">About Us</a>
-      <a href="{{ root }}en/services.html">Services</a>
-      <a href="{{ root }}en/projects.html">Projects</a>
-      <a href="{{ root }}en/contact.html">Contact</a>
-      <a href="{{ root }}chi-siamo.html" class="mobile-lang-switch">IT</a>
-{% else %}
-      <a href="{{ root }}index.html">Home</a>
-      <a href="{{ root }}chi-siamo.html">Chi Siamo</a>
-      <a href="{{ root }}servizi.html">Servizi</a>
-      <a href="{{ root }}progetti.html">Progetti</a>
-      <a href="{{ root }}contatti.html">Contatti</a>
-      <a href="{{ root }}en/index.html" class="mobile-lang-switch">EN</a>
-{% endif %}
-    </div>
-  </div>
 
   <main id="main-content">
 

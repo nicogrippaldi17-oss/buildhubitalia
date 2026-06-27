@@ -3,28 +3,6 @@
    =============================== */
 
 document.addEventListener("DOMContentLoaded", function () {
-  // ----- MOBILE MENU -----
-  const hamburger = document.querySelector(".hamburger");
-  const mobileMenu = document.getElementById("mobile-menu");
-  if (hamburger && mobileMenu) {
-    hamburger.addEventListener("click", function () {
-      const isOpen = mobileMenu.classList.toggle("open");
-      hamburger.classList.toggle("active", isOpen);
-      hamburger.setAttribute("aria-expanded", isOpen);
-      mobileMenu.setAttribute("aria-hidden", !isOpen);
-      document.body.style.overflow = isOpen ? "hidden" : "";
-    });
-    mobileMenu.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        mobileMenu.classList.remove("open");
-        hamburger.classList.remove("active");
-        hamburger.setAttribute("aria-expanded", "false");
-        mobileMenu.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-      });
-    });
-  }
-
   // ----- SCROLL REVEAL -----
   const revealElements = document.querySelectorAll(
     ".reveal, .reveal-left, .reveal-right, .reveal-stagger"

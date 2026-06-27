@@ -94,9 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ----- CONTACT FORM -----
   const contactForm = document.getElementById("contactForm");
-  if (contactForm) {
-    const lang = document.documentElement.lang || "it";
-    const texts = lang === "en"
+  const lang = document.documentElement.lang || "it";
+  const texts = lang === "en"
       ? { required: "Required", invalidEmail: "Invalid email", tooShort: "Message must be at least 10 characters", sending: "Sending...", sendBtn: "Request a consultation" }
       : { required: "Campo obbligatorio", invalidEmail: "Email non valida", tooShort: "Il messaggio deve contenere almeno 10 caratteri", sending: "Invio...", sendBtn: "Richiedi una consulenza" };
     const successMsg = document.getElementById("formSuccess");

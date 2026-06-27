@@ -73,9 +73,11 @@ permalink: "/en/contact.html"
 
             <div class="form-group checkbox">
               <input type="checkbox" id="privacy" name="privacy" required />
-              <label for="privacy">I have read and accept the privacy policy *</label>
+              <label for="privacy">I have read and accept the <a href="privacy.html" target="_blank">privacy policy</a> *</label>
               <p class="error-text" style="display:none;">You must accept the privacy policy</p>
             </div>
+
+            <p class="form-disclaimer">Your data will be processed by Build Hub to respond to your request, as described in the <a href="privacy.html" target="_blank">Privacy Policy</a>. Data is retained for a maximum of 24 months. You can request deletion at any time by writing to buildhubitalia@gmail.com.</p>
 
             <button type="submit" class="btn btn-primary">
               <span class="btn-text">Request a consultation</span>
@@ -106,11 +108,182 @@ permalink: "/en/contact.html"
             <div class="icon"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
             <div class="text">Mon-Fri: 9:00 AM - 6:00 PM</div>
           </div>
-          <div class="contatti-map"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div class="contatti-map" id="contactMap">
+            <div class="routing-panel" id="routingPanel">
+              <div class="routing-toggle" id="routingToggle">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 11 12 2 21 11"/><polyline points="3 22 12 13 21 22"/></svg>
+                <span>Route</span>
+                <svg class="routing-chevron" viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+              </div>
+              <div class="routing-body" id="routingBody">
+                <input type="text" id="searchStart" placeholder="Street, city..." autocomplete="off" />
+                <div class="search-results" id="searchResults"></div>
+                <input type="text" id="searchEnd" placeholder="Street, city..." autocomplete="off" />
+                <div class="search-results" id="searchResultsEnd"></div>
+                <button class="btn-clear" id="clearRoute">Clear route</button>
+                <div class="route-info" id="routeInfo"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+(function() {
+  var map = L.map('contactMap', {
+    center: [37.5079, 15.0830],
+    zoom: 13,
+    scrollWheelZoom: false
+  });
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 20
+  }).addTo(map);
+
+  var officeIcon = L.divIcon({
+    html: '<svg viewBox="0 0 40 40" width="28" height="40"><circle cx="20" cy="12" r="8" fill="#F59E0B" stroke="#fff" stroke-width="2"/><path d="M20 20L20 38" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="38" r="3" fill="#F59E0B"/></svg>',
+    iconSize: [28, 40],
+    iconAnchor: [14, 40],
+    popupAnchor: [0, -40],
+    className: ''
+  });
+
+  var office = L.marker([37.5079, 15.0830], { icon: officeIcon }).addTo(map);
+  office.bindPopup('<h4>Build Hub</h4><p>Catania</p>');
+
+  document.getElementById('routingToggle').addEventListener('click', function() {
+    document.getElementById('routingPanel').classList.toggle('open');
+  });
+
+  function openRouting() {
+    document.getElementById('routingPanel').classList.add('open');
+  }
+
+  var waypoints = [];
+  var routeLine = null;
+
+  function nominatimSearch(query, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(query) + '&limit=8&addressdetails=1');
+    xhr.onload = function() {
+      if (xhr.status === 200) callback(JSON.parse(xhr.responseText));
+    };
+    xhr.send();
+  }
+
+  function getRoute(startLon, startLat, endLon, endLat) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://router.project-osrm.org/route/v1/driving/' + startLon + ',' + startLat + ';' + endLon + ',' + endLat + '?overview=full&geometries=geojson');
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        var data = JSON.parse(xhr.responseText);
+        if (data.code === 'Ok' && data.routes.length > 0) {
+          var route = data.routes[0];
+          var coords = route.geometry.coordinates.map(function(c) { return [c[1], c[0]]; });
+          if (routeLine) map.removeLayer(routeLine);
+          routeLine = L.polyline(coords, { color: '#F59E0B', weight: 4, opacity: 0.8 }).addTo(map);
+          map.fitBounds(routeLine.getBounds().pad(0.1));
+          var dist = (route.distance / 1000).toFixed(1);
+          var dur = Math.round(route.duration / 60);
+          document.getElementById('routeInfo').innerHTML = '<strong>' + dist + ' km</strong> &middot; ' + dur + ' min';
+          openRouting();
+        }
+      }
+    };
+    xhr.send();
+  }
+
+  var searchTimerStart;
+  var searchTimerEnd;
+  var searchInput = document.getElementById('searchStart');
+  var searchResults = document.getElementById('searchResults');
+
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      clearTimeout(searchTimerStart);
+      var q = this.value.trim();
+      if (q.length < 3) { searchResults.style.display = 'none'; return; }
+      searchTimerStart = setTimeout(function() {
+        nominatimSearch(q, function(results) {
+          searchResults.innerHTML = '';
+          if (results.length === 0) { searchResults.style.display = 'none'; return; }
+          searchResults.style.display = 'block';
+          results.forEach(function(r) {
+            var d = document.createElement('div');
+            var parts = r.display_name.split(',');
+            d.textContent = parts.slice(0, 3).join(',').trim();
+            d.addEventListener('click', function() {
+              searchInput.value = parts.slice(0, 2).join(',').trim();
+              searchResults.style.display = 'none';
+              waypoints[0] = [parseFloat(r.lat), parseFloat(r.lon)];
+              if (waypoints[0] && waypoints[1]) getRoute(waypoints[0][1], waypoints[0][0], waypoints[1][1], waypoints[1][0]);
+            });
+            searchResults.appendChild(d);
+          });
+        });
+      }, 300);
+    });
+  }
+
+  var searchInputEnd = document.getElementById('searchEnd');
+  var searchResultsEnd = document.getElementById('searchResultsEnd');
+
+  if (searchInputEnd) {
+    searchInputEnd.addEventListener('input', function() {
+      clearTimeout(searchTimerEnd);
+      var q = this.value.trim();
+      if (q.length < 3) { searchResultsEnd.style.display = 'none'; return; }
+      searchTimerEnd = setTimeout(function() {
+        nominatimSearch(q, function(results) {
+          searchResultsEnd.innerHTML = '';
+          if (results.length === 0) { searchResultsEnd.style.display = 'none'; return; }
+          searchResultsEnd.style.display = 'block';
+          results.forEach(function(r) {
+            var d = document.createElement('div');
+            var parts = r.display_name.split(',');
+            d.textContent = parts.slice(0, 3).join(',').trim();
+            d.addEventListener('click', function() {
+              searchInputEnd.value = parts.slice(0, 2).join(',').trim();
+              searchResultsEnd.style.display = 'none';
+              waypoints[1] = [parseFloat(r.lat), parseFloat(r.lon)];
+              if (waypoints[0] && waypoints[1]) getRoute(waypoints[0][1], waypoints[0][0], waypoints[1][1], waypoints[1][0]);
+            });
+            searchResultsEnd.appendChild(d);
+          });
+        });
+      }, 300);
+    });
+  }
+
+  map.on('click', function(e) {
+    if (!waypoints[0]) {
+      waypoints[0] = [e.latlng.lat, e.latlng.lng];
+      document.getElementById('searchStart').value = e.latlng.lat.toFixed(4) + ', ' + e.latlng.lng.toFixed(4);
+    } else if (!waypoints[1]) {
+      waypoints[1] = [e.latlng.lat, e.latlng.lng];
+      document.getElementById('searchEnd').value = e.latlng.lat.toFixed(4) + ', ' + e.latlng.lng.toFixed(4);
+      getRoute(waypoints[0][1], waypoints[0][0], waypoints[1][1], waypoints[1][0]);
+    }
+  });
+
+  document.getElementById('clearRoute').addEventListener('click', function() {
+    waypoints = [];
+    if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
+    document.getElementById('searchStart').value = '';
+    document.getElementById('searchEnd').value = '';
+    document.getElementById('routeInfo').innerHTML = '';
+    map.setView([37.5079, 15.0830], 13);
+  });
+
+  map.on('mouseenter', function() { map.scrollWheelZoom.enable(); });
+  map.on('mouseleave', function() { map.scrollWheelZoom.disable(); });
+})();
+</script>
 
   <!-- WHAT HAPPENS NEXT -->
   <section class="section bg-surface">
@@ -147,7 +320,7 @@ permalink: "/en/contact.html"
     <div class="territorio-glow"></div>
     <div class="container">
       <div class="reveal">
-        <div class="territorio-icon"><svg viewBox="0 0 100 100" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40C14 28 26 18 44 14C60 10 78 10 92 18C98 22 99 24 99 30C95 38 89 48 83 58C75 72 65 84 55 96C49 99 39 99 31 95C23 89 15 79 9 67C3 55 2 45 4 41C6 39 8 40 8 40Z"/></svg></div>
+        <div class="territorio-icon"><svg viewBox="0 0 100 100" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M82.3 79.5L81.5 73.5L84.4 69.1L88.2 67.2L86.5 66.3L87.1 63.9L85.3 63.3L83.7 60.4L83.9 59.0L85.9 58.6L84.4 56.9L81.3 56.0L80.9 49.9L83.6 46.2L84.6 39.7L92.9 27.8L95.4 21.4L97.5 20.4L93.8 19.4L87.3 22.8L85.8 22.7L85.2 20.4L84.8 23.3L81.8 25.7L75.8 23.4L70.8 24.5L66.3 28.3L57.7 30.3L49.6 29.0L41.3 31.6L36.1 29.1L35.3 26.4L30.8 26.5L28.8 22.2L25.1 24.2L22.1 23.8L21.0 25.4L21.4 27.6L16.8 29.6L14.4 28.1L11.6 23.6L11.1 26.3L4.6 30.0L5.7 30.6L4.6 31.2L3.5 34.0L4.3 35.4L2.5 37.9L4.0 41.8L8.1 44.1L9.5 46.7L17.1 46.3L20.3 49.3L24.5 49.6L32.1 56.4L35.8 57.1L38.9 60.3L45.2 63.9L51.5 63.7L56.5 65.5L60.3 69.4L63.5 75.5L71.9 78.6L74.4 77.6L78.8 78.6L80.8 80.6L82.3 79.5Z"/></svg></div>
         <h2>Rooted in Sicily</h2>
         <p>We operate throughout Sicily with deep-rooted knowledge of local specificities, the regional regulatory framework and the best construction practices of the Mediterranean area.</p>
       </div>

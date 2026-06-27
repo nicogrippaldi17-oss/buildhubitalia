@@ -1,6 +1,6 @@
 ---
 permalink: false
-image: "/img/services/direzione-lavori.svg"
+image: "img/services/direzione-lavori.svg"
 title: "Direzione Lavori"
 description: "Controllo, coordinamento e qualità durante l'esecuzione delle opere. La fase di cantiere rappresenta il momento in cui il progetto prende forma e in cui ogni decisione può influire su tempi, costi e qualità del risultato finale. La Direzione dei Lavori ha il compito di verificare che le opere vengano eseguite nel rispetto del progetto approvato, delle normative vigenti e delle regole della buona tecnica. Build Hub monitora costantemente l'avanzamento delle lavorazioni, coordina le attività tra le figure coinvolte e verifica che ogni fase venga eseguita secondo quanto previsto. Attraverso un controllo continuo del cantiere, garantiamo al committente una visione chiara dell'andamento dei lavori e un supporto costante nella gestione delle eventuali criticità."
 icon: "supervision"

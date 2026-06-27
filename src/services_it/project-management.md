@@ -1,6 +1,6 @@
 ---
 permalink: false
-image: "/img/services/project-management.svg"
+image: "img/services/project-management.svg"
 title: "Project Management"
 description: "Un unico referente per la gestione del tuo progetto. Ogni progetto edilizio coinvolge numerose figure professionali, attività operative e decisioni che devono essere coordinate in modo efficace. Build Hub nasce per centralizzare la gestione dell'intero processo, diventando il punto di riferimento tra committente, tecnici, imprese, fornitori e soggetti coinvolti nell'intervento. Attraverso un approccio strutturato e orientato agli obiettivi, pianifichiamo le attività, monitoriamo l'avanzamento dei lavori e coordiniamo i diversi interlocutori, garantendo una comunicazione chiara e una visione completa del progetto. L'obiettivo è ridurre inefficienze, evitare criticità e consentire al cliente di affrontare ogni fase con maggiore controllo e consapevolezza."
 icon: "management"

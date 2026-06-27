@@ -1,6 +1,6 @@
 ---
 permalink: false
-image: "/img/services/progettazione.svg"
+image: "img/services/progettazione.svg"
 title: "Progettazione e Pratiche Edilizie"
 description: "Dall'idea alla realizzazione, con un percorso chiaro e strutturato. Ogni intervento edilizio inizia da un'esigenza concreta: ristrutturare un immobile, modificare degli spazi, migliorare la funzionalità di un edificio o valorizzare un investimento. Per trasformare un'idea in un progetto realizzabile è necessario affrontare aspetti tecnici, normativi e amministrativi che richiedono competenze specifiche e una corretta pianificazione. Build Hub accompagna il cliente in tutte le fasi preliminari dell'intervento, coordinando la progettazione e gestendo le pratiche necessarie per ottenere le autorizzazioni previste dalla normativa vigente. L'obiettivo è semplificare il processo, ridurre le incertezze e consentire al cliente di affrontare il progetto con la certezza di avere una documentazione corretta e un percorso definito."
 icon: "permits"

@@ -1,6 +1,6 @@
 ---
 permalink: false
-image: "/img/services/consulenza-privati.svg"
+image: "img/services/consulenza-privati.svg"
 title: "Consulenza per Privati"
 description: "Supporto tecnico per affrontare il progetto con maggiore consapevolezza. Acquistare, ristrutturare o valorizzare un immobile comporta decisioni importanti che richiedono valutazioni tecniche, economiche e operative. Spesso il privato si trova a dover affrontare situazioni complesse senza avere gli strumenti necessari per comprendere appieno criticità, opportunità e possibili conseguenze delle proprie scelte. Build Hub offre un servizio di consulenza dedicato a chi desidera affrontare il proprio progetto con maggiore chiarezza e consapevolezza, fornendo supporto tecnico nelle fasi preliminari e durante l'intero percorso decisionale. L'obiettivo è aiutare il cliente a comprendere il contesto, valutare le alternative disponibili e individuare le soluzioni più adatte alle proprie esigenze."
 icon: "consulting"

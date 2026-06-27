@@ -36,7 +36,7 @@ permalink: "/en/services.html"
       <div class="servizio-detail-inner">
         <div class="servizio-image reveal-left{% if s.data.image %} has-image{% endif %}">
           {% if s.data.image %}
-          <img src="{{ s.data.image }}" alt="{{ s.data.title }}" loading="lazy" />
+           <img src="{{ root }}{{ s.data.image }}" alt="{{ s.data.title }}" loading="lazy" />
           {% else %}
           {{ serviceIcon(s.data.icon, "") }}
           <span>Image coming soon</span>

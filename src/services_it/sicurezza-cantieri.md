@@ -1,6 +1,6 @@
 ---
 permalink: false
-image: "/img/services/sicurezza-cantieri.svg"
+image: "img/services/sicurezza-cantieri.svg"
 title: "Sicurezza nei Cantieri"
 description: "Sicurezza, organizzazione e conformità durante l'esecuzione dei lavori. La sicurezza rappresenta un elemento fondamentale per la corretta gestione di qualsiasi intervento edilizio. Oltre a costituire un obbligo normativo, una pianificazione efficace delle attività di cantiere contribuisce a ridurre i rischi, migliorare l'organizzazione delle lavorazioni e garantire condizioni operative adeguate per tutte le figure coinvolte. Build Hub supporta committenti, professionisti e imprese nella gestione degli adempimenti previsti dalla normativa in materia di sicurezza, coordinando le attività necessarie e verificando che le lavorazioni si svolgano nel rispetto delle disposizioni vigenti. Attraverso un approccio strutturato e orientato alla prevenzione, contribuiamo a creare un ambiente di lavoro più sicuro, efficiente e controllato."
 icon: "safety"

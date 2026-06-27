@@ -1,6 +1,6 @@
 ---
 permalink: false
-image: "/img/services/direzione-lavori.svg"
+image: "img/services/direzione-lavori.svg"
 title: "Construction Supervision"
 description: "Control, coordination and quality during the execution of works. The construction phase is when the project takes shape and every decision can impact timelines, costs and the quality of the final result. Construction supervision ensures that works are carried out in compliance with the approved design, current regulations and good technical practice. Build Hub constantly monitors work progress, coordinates activities between the parties involved and verifies that each phase is executed as planned. Through continuous site inspection, we provide the client with a clear view of progress and ongoing support in managing any critical issues."
 icon: "supervision"

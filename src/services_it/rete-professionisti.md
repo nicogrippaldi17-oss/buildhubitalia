@@ -1,6 +1,6 @@
 ---
 permalink: false
-image: "/img/services/rete-professionisti.svg"
+image: "img/services/rete-professionisti.svg"
 title: "Rete di Professionisti e Fornitori"
 description: "Le competenze giuste, nel momento giusto. Ogni progetto edilizio richiede il coinvolgimento di figure professionali, imprese e fornitori con competenze specifiche. La qualità del risultato finale dipende non solo dalla preparazione dei singoli operatori, ma anche dalla capacità di integrarli all'interno di un processo organizzato e coordinato. Build Hub si avvale di una rete di professionisti e partner selezionati, in grado di supportare le diverse esigenze progettuali e operative che possono emergere durante lo sviluppo di un intervento. Il nostro ruolo non consiste semplicemente nel mettere in contatto le parti, ma nel favorire una collaborazione efficace tra tutti i soggetti coinvolti, contribuendo a mantenere il progetto allineato agli obiettivi prefissati."
 icon: "network"

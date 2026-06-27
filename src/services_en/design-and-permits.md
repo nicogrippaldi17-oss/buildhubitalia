@@ -1,6 +1,6 @@
 ---
 permalink: false
-image: "/img/services/progettazione.svg"
+image: "img/services/progettazione.svg"
 title: "Design and Building Permits"
 description: "From idea to completion, with a clear and structured path. Every construction project begins with a concrete need: renovating a property, modifying spaces, improving a building's functionality or enhancing an investment. Turning an idea into a feasible project requires addressing technical, regulatory and administrative aspects that demand specific expertise and proper planning. Build Hub guides the client through all preliminary phases, coordinating the design process and managing the paperwork required to obtain the necessary authorisations. The goal is to simplify the process, reduce uncertainty and enable the client to approach the project with the certainty of having correct documentation and a clear path forward."
 icon: "permits"

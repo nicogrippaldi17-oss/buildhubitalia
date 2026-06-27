@@ -16,6 +16,7 @@ collections:
   - name: "pages_it"
     label: "Pagine IT"
     label_singular: "Pagina IT"
+    description: "⚠️ Le modifiche qui NON si riflettono sulla versione EN. Dopo aver modificato una pagina IT, aggiorna anche la corrispondente in Pages EN."
     create: false
     delete: false
     files:
@@ -108,6 +109,7 @@ collections:
   - name: "pages_en"
     label: "Pages EN"
     label_singular: "Page EN"
+    description: "⚠️ Changes here do NOT apply to the IT version. After editing a page, also update the corresponding one in Pagine IT."
     create: false
     delete: false
     files:

@@ -4,7 +4,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/img");
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/favicon.svg");
-  eleventyConfig.addPassthroughCopy({ "src/favicon.ico": "/favicon.ico" });
 
   eleventyConfig.addCollection("services_it", function (coll) {
     return coll.getFilteredByGlob("src/services_it/*.md").sort((a, b) => a.data.order - b.data.order);

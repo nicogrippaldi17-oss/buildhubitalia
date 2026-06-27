@@ -19,6 +19,7 @@
   --shadow: 0 4px 30px rgba(2, 17, 100, 0.08);
   --shadow-lg: 0 8px 40px rgba(2, 17, 100, 0.12);
   --transition: 0.3s ease;
+  --navbar-height: 90px;
 }
 
 /* ----- RESET ----- */
@@ -149,11 +150,6 @@ h1, h2, h3, h4 {
 }
 
 /* ===== NAVBAR (Webuild SVG Vector - Solid background fix) ===== */
-:root {
-  --primary-blue: #021164;
-  --navbar-height: 90px;
-}
-
 .webuild-navbar {
   position: fixed;
   top: 0;
@@ -1650,47 +1646,6 @@ h1, h2, h3, h4 {
 .contact-badge svg {
   color: #16a34a;
   flex-shrink: 0;
-}
-
-/* ----- CONTACT STEPS ----- */
-.contact-steps {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
-@media (min-width: 640px) {
-  .contact-steps { grid-template-columns: repeat(3, 1fr); }
-}
-
-.contact-step {
-  text-align: center;
-  padding: 2rem 1.5rem;
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: all var(--transition);
-}
-
-.contact-step:hover {
-  border-color: rgba(37,99,235,0.3);
-  box-shadow: var(--shadow);
-  transform: translateY(-2px);
-}
-
-.contact-step-number {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--primary);
-  color: var(--white);
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 1.25rem;
 }
 
 /* ----- CONTACT STEPS (Fish Card Flow) ----- */

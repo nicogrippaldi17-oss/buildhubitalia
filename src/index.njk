@@ -4,13 +4,6 @@ lang: it
 title: "Build Hub"
 description: "Build Hub — Project Management in Sicilia. Dalla progettazione alla realizzazione, un unico interlocutore per il tuo progetto."
 root: ""
-stats:
-  - number: 50
-    label: "Progetti Completati"
-  - number: 15
-    label: "Anni di Esperienza"
-  - number: 100
-    label: "Clienti Soddisfatti"
 permalink: "/index.html"
 ---
 
@@ -96,8 +89,13 @@ permalink: "/index.html"
   <!-- NUMERI -->
   <section class="stats-section">
     <div class="container">
+      {% set stat_items = [
+        { number: collections.projects_it.length, label: "Progetti Completati" },
+        { number: site.year - 2026 + 1, label: "Anni di Esperienza" },
+        { number: collections.services_it.length, label: "Servizi Offerti" }
+      ] %}
       <div class="stats-grid reveal-stagger">
-        {% for stat in stats %}
+        {% for stat in stat_items %}
         <div>
           <div class="stat-number" data-target="{{ stat.number }}">0</div>
           <p class="stat-label">{{ stat.label }}</p>

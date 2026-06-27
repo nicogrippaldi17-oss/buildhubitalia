@@ -94,8 +94,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ----- CONTACT FORM -----
   const contactForm = document.getElementById("contactForm");
-  const lang = document.documentElement.lang || "it";
-  const texts = lang === "en"
+  if (contactForm) {
+    const lang = document.documentElement.lang || "it";
+    const texts = lang === "en"
       ? { required: "Required", invalidEmail: "Invalid email", tooShort: "Message must be at least 10 characters", sending: "Sending...", sendBtn: "Request a consultation" }
       : { required: "Campo obbligatorio", invalidEmail: "Email non valida", tooShort: "Il messaggio deve contenere almeno 10 caratteri", sending: "Invio...", sendBtn: "Richiedi una consulenza" };
     const successMsg = document.getElementById("formSuccess");
@@ -104,105 +105,67 @@ document.addEventListener("DOMContentLoaded", function () {
     const spinner = submitBtn ? submitBtn.querySelector(".spinner") : null;
     const btnText = submitBtn ? submitBtn.querySelector(".btn-text") : null;
 
+    function validateField(field) {
+      const errorEl = field.closest(".form-group")?.querySelector(".error-text");
+      if (!errorEl) return true;
+      let valid = true;
+      let message = "";
+      if (field.hasAttribute("required") && !field.value.trim()) {
+        valid = false;
+        message = texts.required;
+      } else if (field.type === "email" && field.value.trim()) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim())) {
+          valid = false;
+          message = texts.invalidEmail;
+        }
+      } else if (field.id === "messaggio" && field.value.trim().length < 10 && field.value.trim().length > 0) {
+        valid = false;
+        message = texts.tooShort;
+      }
+      field.classList.toggle("error", !valid);
+      errorEl.textContent = message;
+      errorEl.style.display = valid ? "none" : "block";
+      return valid;
+    }
+
     // Live validation
     contactForm.querySelectorAll("input, textarea").forEach(function (field) {
-      field.addEventListener("blur", function () {
-        validateField(field);
-      });
+      field.addEventListener("blur", function () { validateField(field); });
       field.addEventListener("input", function () {
-        if (field.classList.contains("error")) {
-          validateField(field);
-        }
+        if (field.classList.contains("error")) validateField(field);
       });
     });
 
     contactForm.addEventListener("submit", function (e) {
       e.preventDefault();
-
-      // Reset
       if (errorBanner) errorBanner.classList.remove("show");
       if (successMsg) successMsg.classList.remove("show");
-
-      // Validate all
-      const fields = contactForm.querySelectorAll(
-        "input[required], textarea[required]"
-      );
+      const fields = contactForm.querySelectorAll("input[required], textarea[required]");
       let valid = true;
-      fields.forEach(function (field) {
-        if (!validateField(field)) valid = false;
-      });
-
-      // Privacy checkbox
+      fields.forEach(function (field) { if (!validateField(field)) valid = false; });
       const privacy = document.getElementById("privacy");
       if (privacy && !privacy.checked) {
         valid = false;
-        privacy.closest(".form-group").querySelector(".error-text").style.display =
-          "block";
+        privacy.closest(".form-group").querySelector(".error-text").style.display = "block";
       }
-
       if (!valid) return;
-
-      // Submit to Netlify
       if (submitBtn) submitBtn.disabled = true;
       if (spinner) spinner.classList.add("show");
       if (btnText) btnText.textContent = texts.sending;
-
       var formData = new FormData(contactForm);
-      var encoded = new URLSearchParams(formData).toString();
-
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encoded
-      })
-      .then(function () {
-        if (submitBtn) submitBtn.disabled = false;
-        if (spinner) spinner.classList.remove("show");
-        if (btnText) btnText.textContent = texts.sendBtn;
-        if (successMsg) {
-          successMsg.classList.add("show");
-          contactForm.style.display = "none";
-        }
-      })
-      .catch(function () {
-        if (submitBtn) submitBtn.disabled = false;
-        if (spinner) spinner.classList.remove("show");
-        if (btnText) btnText.textContent = texts.sendBtn;
-        if (errorBanner) errorBanner.classList.add("show");
-      });
+      fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(formData).toString() })
+        .then(function () {
+          if (submitBtn) submitBtn.disabled = false;
+          if (spinner) spinner.classList.remove("show");
+          if (btnText) btnText.textContent = texts.sendBtn;
+          if (successMsg) { successMsg.classList.add("show"); contactForm.style.display = "none"; }
+        })
+        .catch(function () {
+          if (submitBtn) submitBtn.disabled = false;
+          if (spinner) spinner.classList.remove("show");
+          if (btnText) btnText.textContent = texts.sendBtn;
+          if (errorBanner) errorBanner.classList.add("show");
+        });
     });
-  }
-
-  function validateField(field) {
-    const errorEl = field
-      .closest(".form-group")
-      ?.querySelector(".error-text");
-    if (!errorEl) return true;
-
-    let valid = true;
-    let message = "";
-
-    if (field.hasAttribute("required") && !field.value.trim()) {
-      valid = false;
-      message = texts.required;
-    } else if (field.type === "email" && field.value.trim()) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(field.value.trim())) {
-        valid = false;
-        message = texts.invalidEmail;
-      }
-    } else if (
-      field.id === "messaggio" &&
-      field.value.trim().length < 10 &&
-      field.value.trim().length > 0
-    ) {
-      valid = false;
-      message = texts.tooShort;
-    }
-
-    field.classList.toggle("error", !valid);
-    errorEl.textContent = message;
-    errorEl.style.display = valid ? "none" : "block";
-    return valid;
   }
 });

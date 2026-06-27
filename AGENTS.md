@@ -58,7 +58,7 @@ buildhub-site/
 4. Invitare il cliente come utente
 
 ## Per il cliente (modifiche via admin)
-1. Aprire `buildhub.it/admin`
+1. Aprire `buildhubitalia.com/admin`
 2. Login via email (link magico)
 3. Modificare testi/immagini
 4. Cliccare "Publish" → sito aggiornato in ~30 secondi

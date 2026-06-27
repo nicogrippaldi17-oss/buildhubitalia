@@ -4,13 +4,6 @@ lang: en
 title: "Build Hub"
 description: "Build Hub — Project Management in Sicily. From design to delivery, your single point of contact for every project."
 root: "../"
-stats:
-  - number: 50
-    label: "Projects Completed"
-  - number: 15
-    label: "Years of Experience"
-  - number: 100
-    label: "Happy Clients"
 permalink: "/en/index.html"
 ---
 
@@ -92,8 +85,13 @@ permalink: "/en/index.html"
 
   <section class="stats-section">
     <div class="container">
+      {% set stat_items = [
+        { number: collections.projects_en.length, label: "Completed Projects" },
+        { number: site.year - 2026 + 1, label: "Years of Experience" },
+        { number: collections.services_en.length, label: "Services Offered" }
+      ] %}
       <div class="stats-grid reveal-stagger">
-        {% for stat in stats %}
+        {% for stat in stat_items %}
         <div>
           <div class="stat-number" data-target="{{ stat.number }}">0</div>
           <p class="stat-label">{{ stat.label }}</p>

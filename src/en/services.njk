@@ -1,0 +1,71 @@
+---
+layout: base.njk
+lang: en
+title: "Services"
+description: "Build Hub — Project Management in Sicily. Discover all our services: from design to delivery."
+root: "../"
+permalink: "/en/services.html"
+---
+
+{% from "icons.njk" import serviceIcon %}
+
+  <section class="page-hero">
+    <div class="page-hero-glow"></div>
+    <div class="container">
+      <h1>Services</h1>
+      <p>From design to delivery, a single interlocutor for every phase of your project</p>
+    </div>
+  </section>
+
+  <section class="section bg-surface">
+    <div class="container">
+      <div class="service-nav">
+        {% for s in collections.services_en %}
+        <a href="#{{ s.data.slug }}" class="service-nav-pill reveal">
+          <span class="service-nav-pill-icon">{{ serviceIcon(s.data.icon, "") }}</span>
+          <span class="service-nav-pill-label">{{ s.data.title }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% for s in collections.services_en %}
+  <section id="{{ s.data.slug }}" class="servizio-detail">
+    <div class="container">
+      <div class="servizio-detail-inner">
+        <div class="servizio-image reveal-left{% if s.data.image %} has-image{% endif %}">
+          {% if s.data.image %}
+          <img src="{{ s.data.image }}" alt="{{ s.data.title }}" loading="lazy" />
+          {% else %}
+          {{ serviceIcon(s.data.icon, "") }}
+          <span>Image coming soon</span>
+          {% endif %}
+        </div>
+        <div class="servizio-text reveal-right">
+          <h2>{{ s.data.title }}</h2>
+          <p>{{ s.data.description }}</p>
+          <ul class="servizio-list">
+            {% for feature in s.data.features %}
+            <li><span class="check"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>{{ feature.text if feature.text else feature }}{% if feature.tip %}<span class="tip-trigger" data-tip="{{ feature.tip }}">?</span>{% endif %}</li>
+            {% endfor %}
+          </ul>
+          <a href="contact.html" class="btn btn-primary">Request a consultation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endfor %}
+
+  <section class="section bg-white">
+    <div class="container text-center">
+      <div class="reveal" style="max-width: 640px; margin: 0 auto;">
+        <h2 class="section-title" style="margin-bottom: 1rem;">Not sure which service is right for you?</h2>
+        <p style="color: rgba(10,10,10,0.55); font-size: 1.0625rem; line-height: 1.7; margin-bottom: 2rem;">Tell us about your project. We will listen, analyse your needs and guide you towards the best solution, with no obligation.</p>
+        <a href="contact.html" class="btn btn-primary btn-lg">
+          Tell us about your project
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>

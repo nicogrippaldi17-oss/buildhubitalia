@@ -1,0 +1,155 @@
+---
+layout: base.njk
+lang: it
+title: "Contatti"
+description: "Contatta Build Hub — Richiedi una consulenza gratuita per il tuo progetto di costruzione o ristrutturazione in Sicilia."
+root: ""
+permalink: "/contatti.html"
+---
+
+  <section class="page-hero">
+    <div class="page-hero-glow"></div>
+    <div class="container">
+      <h1>Parliamo del tuo progetto</h1>
+      <p>Raccontaci la tua idea. Ti risponderemo con una prima analisi entro 48 ore.</p>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container">
+      <div class="contatti-grid">
+        <div class="reveal">
+          <div id="formSuccess" class="form-success">
+            <div class="form-success-icon">
+              <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3>Richiesta Inviata!</h3>
+            <p>Grazie per averci contattato. Analizzeremo la tua richiesta e ti risponderemo entro 48 ore.</p>
+          </div>
+
+          <form id="contactForm" novalidate netlify>
+            <input type="hidden" name="form-name" value="Contatti IT" />
+            <div id="formError" class="form-error-banner">Si è verificato un errore. Riprova più tardi o contattaci direttamente via email.</div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nome">Nome e Cognome *</label>
+                <input type="text" id="nome" name="nome" required placeholder="Mario Rossi" />
+                <p class="error-text" style="display:none;"></p>
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required placeholder="mario.rossi@email.com" />
+                <p class="error-text" style="display:none;"></p>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="telefono">Telefono</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="+39 3XX XXX XXXX" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Servizi di interesse</label>
+              <div class="services-checkboxes">
+                <label class="service-checkbox"><input type="checkbox" name="servizi" value="project-management" /> Project Management</label>
+                <label class="service-checkbox"><input type="checkbox" name="servizi" value="progettazione" /> Progettazione e Pratiche Edilizie</label>
+                <label class="service-checkbox"><input type="checkbox" name="servizi" value="direzione-lavori" /> Direzione Lavori</label>
+                <label class="service-checkbox"><input type="checkbox" name="servizi" value="sicurezza" /> Sicurezza nei Cantieri</label>
+                <label class="service-checkbox"><input type="checkbox" name="servizi" value="gestione-economica" /> Gestione Economica</label>
+                <label class="service-checkbox"><input type="checkbox" name="servizi" value="efficienza-energetica" /> Efficienza Energetica</label>
+                <label class="service-checkbox"><input type="checkbox" name="servizi" value="consulenza" /> Consulenza per Privati</label>
+                <label class="service-checkbox"><input type="checkbox" name="servizi" value="rete-professionisti" /> Rete di Professionisti</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="messaggio">Descrivi il tuo progetto *</label>
+              <textarea id="messaggio" name="messaggio" required placeholder="Raccontaci cosa vuoi realizzare: tipo di intervento, tempistiche, eventuali vincoli che conosci già..." rows="6"></textarea>
+              <p class="error-text" style="display:none;"></p>
+            </div>
+
+            <div class="form-group checkbox">
+              <input type="checkbox" id="privacy" name="privacy" required />
+              <label for="privacy">Ho letto e accetto la privacy policy *</label>
+              <p class="error-text" style="display:none;">Devi accettare la privacy policy</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              <span class="btn-text">Richiedi una consulenza</span>
+              <svg class="spinner" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10" opacity="0.25"/><path d="M4 12a8 8 0 018-8" opacity="0.75"/></svg>
+            </button>
+          </form>
+        </div>
+
+        <div class="contatti-info reveal-right">
+          <h3>Contattaci direttamente</h3>
+          <div class="contact-badge">
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            Rispondiamo entro 24 ore
+          </div>
+          <div class="contatti-info-item">
+            <div class="icon"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div class="text">Catania</div>
+          </div>
+          <div class="contatti-info-item">
+            <div class="icon"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div>
+            <div class="text">+39 095 123 4567</div>
+          </div>
+          <div class="contatti-info-item">
+            <div class="icon"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div class="text">buildhubitalia@gmail.com</div>
+          </div>
+          <div class="contatti-info-item">
+            <div class="icon"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="text">Lun-Ven: 9:00 - 18:00</div>
+          </div>
+          <div class="contatti-map"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COSA SUCCEDE DOPO -->
+  <section class="section bg-surface">
+    <div class="container">
+      <h2 class="section-title reveal">Cosa succede dopo</h2>
+      <div class="contact-steps reveal-stagger">
+        <div class="contact-step">
+          <div class="contact-step-bubble">1</div>
+          <div class="contact-step-body">
+            <h3>Raccontaci il tuo progetto</h3>
+            <p>Compila il form, scrivici una mail o chiamaci. Abbiamo bisogno di capire cosa vuoi realizzare, in che contesto e con quali aspettative.</p>
+          </div>
+        </div>
+        <div class="contact-step">
+          <div class="contact-step-bubble">2</div>
+          <div class="contact-step-body">
+            <h3>Analizziamo la richiesta</h3>
+            <p>Valutiamo il contesto tecnico e normativo, le criticità e le opportunità. Se necessario, fissiamo un incontro senza impegno per approfondire.</p>
+          </div>
+        </div>
+        <div class="contact-step">
+          <div class="contact-step-bubble">3</div>
+          <div class="contact-step-body">
+            <h3>Ricevi piano e preventivo</h3>
+            <p>Ti presentiamo un percorso chiaro, con tempistiche, fasi operative e una stima trasparente dei costi. Senza sorprese, senza vincoli.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TERRITORIO -->
+  <section class="territorio-section">
+    <div class="territorio-glow"></div>
+    <div class="container">
+      <div class="reveal">
+        <div class="territorio-icon"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3L17 3l3.5 6.5L19 15l-3 6l-3.5 1L9 19L6 12Z"/></svg></div>
+        <h2>Radicati in Sicilia</h2>
+        <p>Operiamo sull'intero territorio siciliano con una conoscenza radicata delle specificità locali, del quadro normativo regionale e delle migliori pratiche costruttive dell'area mediterranea.</p>
+      </div>
+    </div>
+  </section>

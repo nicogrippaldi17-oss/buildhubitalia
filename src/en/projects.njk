@@ -1,0 +1,67 @@
+---
+layout: base.njk
+lang: en
+title: "Projects"
+description: "Build Hub — Our projects in Sicily. Discover the work we have completed and our clients' success stories."
+root: "../"
+permalink: "/en/projects.html"
+---
+
+  <section class="page-hero">
+    <div class="page-hero-glow"></div>
+    <div class="container">
+      <h1>Our projects</h1>
+      <p>Every project is a story of expertise and method</p>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container">
+      {% if collections.projects_en | length == 0 %}
+      <div class="projects-empty">
+        <div class="reveal">
+          <div class="projects-empty-icon">
+            <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h2>Coming soon</h2>
+          <p>We are working to catalogue and showcase the projects we have managed, complete with images, descriptions and results. Every project we handle is unique, and we want to tell its story in the best possible way.</p>
+          <p>In the meantime, if you would like to learn about the work we have completed or receive a portfolio tailored to your needs, we are at your disposal.</p>
+          <a href="contact.html" class="btn btn-primary btn-lg" style="margin-top: 0.5rem;">
+            Request a portfolio
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+      {% else %}
+      <div class="progetti-grid reveal-stagger">
+        {% for p in collections.projects_en %}
+        <div class="progetto-card reveal">
+          <div class="progetto-img">
+            {% if p.data.image %}
+            <img src="{{ p.data.image }}" alt="{{ p.data.title }}" loading="lazy" />
+            {% else %}
+            <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            {% endif %}
+          </div>
+          <div class="progetto-info">
+            <h3>{{ p.data.title }}</h3>
+            <p>{{ p.data.description }}</p>
+            {% if p.data.category %}<span class="progetto-tag">{{ p.data.category }}</span>{% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="territorio-section">
+    <div class="territorio-glow"></div>
+    <div class="container">
+      <div class="reveal">
+        <div class="territorio-icon"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3L17 3l3.5 6.5L19 15l-3 6l-3.5 1L9 19L6 12Z"/></svg></div>
+        <h2>Rooted in Sicily</h2>
+        <p>We operate throughout Sicily with deep-rooted knowledge of local specificities, the regional regulatory framework and the best construction practices of the Mediterranean area.</p>
+      </div>
+    </div>
+  </section>

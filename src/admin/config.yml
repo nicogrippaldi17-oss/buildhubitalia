@@ -1,0 +1,199 @@
+# Decap CMS Config — Build Hub
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/img/projects"
+public_folder: "/img/projects"
+site_url: "https://buildhub.it"
+display_url: "https://buildhub.it"
+logo_url: "/img/logo.png"
+
+locale: "it"
+
+collections:
+  - name: "pages_it"
+    label: "Pagine IT"
+    label_singular: "Pagina IT"
+    folder: "src"
+    create: false
+    delete: false
+    filter: { field: "lang", value: "it" }
+    fields:
+      - { label: "Titolo", name: "title", widget: "string" }
+      - label: "Sezioni Homepage"
+        name: "homepage_fields"
+        widget: "object"
+        collapsed: true
+        fields:
+          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string", default: "Project Management" }
+          - { label: "Tagline Hero", name: "hero_tagline", widget: "string" }
+          - { label: "Testo Bottone Hero", name: "hero_cta", widget: "string" }
+          - label: "Valori"
+            name: "valori"
+            widget: "list"
+            fields:
+              - { label: "Titolo", name: "title", widget: "string" }
+              - { label: "Testo", name: "text", widget: "text" }
+          - label: "Statistiche"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Numero", name: "number", widget: "number" }
+              - { label: "Etichetta", name: "label", widget: "string" }
+          - { label: "Titolo CTA Finale", name: "cta_title", widget: "string" }
+          - { label: "Testo CTA Finale", name: "cta_text", widget: "text" }
+          - { label: "Bottone CTA", name: "cta_button", widget: "string" }
+    files:
+      - label: "Homepage"
+        name: "index"
+        file: "src/index.njk"
+        fields:
+          - { label: "Titolo", name: "title", widget: "string" }
+          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
+          - { label: "Tagline Hero", name: "hero_tagline", widget: "text" }
+          - { label: "Testo Bottone Hero", name: "hero_cta", widget: "string" }
+          - label: "Valori"
+            name: "valori"
+            widget: "list"
+            fields:
+              - { label: "Titolo", name: "title", widget: "string" }
+              - { label: "Testo", name: "text", widget: "text" }
+          - label: "Statistiche"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Numero", name: "number", widget: "number" }
+              - { label: "Etichetta", name: "label", widget: "string" }
+          - { label: "Titolo CTA Finale", name: "cta_title", widget: "string" }
+          - { label: "Testo CTA Finale", name: "cta_text", widget: "text" }
+          - { label: "Bottone CTA", name: "cta_button", widget: "string" }
+
+  - name: "pages_en"
+    label: "Pages EN"
+    label_singular: "Page EN"
+    folder: "src/en"
+    create: false
+    delete: false
+    filter: { field: "lang", value: "en" }
+    files:
+      - label: "Homepage"
+        name: "index"
+        file: "src/en/index.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
+          - { label: "Hero Tagline", name: "hero_tagline", widget: "text" }
+          - { label: "Hero Button Text", name: "hero_cta", widget: "string" }
+          - label: "Values"
+            name: "valori"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Number", name: "number", widget: "number" }
+              - { label: "Label", name: "label", widget: "string" }
+          - { label: "CTA Title", name: "cta_title", widget: "string" }
+          - { label: "CTA Text", name: "cta_text", widget: "text" }
+          - { label: "CTA Button", name: "cta_button", widget: "string" }
+      - label: "About Us"
+        name: "about"
+        file: "src/en/about.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+      - label: "Services"
+        name: "services"
+        file: "src/en/services.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+      - label: "Projects"
+        name: "projects"
+        file: "src/en/projects.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+      - label: "Contact"
+        name: "contact"
+        file: "src/en/contact.njk"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+
+  - name: "services_it"
+    label: "Servizi IT"
+    label_singular: "Servizio"
+    folder: "src/services_it"
+    create: true
+    delete: true
+    extension: "md"
+    fields:
+      - { label: "Titolo", name: "title", widget: "string" }
+      - { label: "Descrizione", name: "description", widget: "text" }
+      - label: "Icona"
+        name: "icon"
+        widget: "select"
+        options: ["management", "permits", "supervision", "safety", "economics", "energy", "consulting", "network"]
+        default: "management"
+      - { label: "Slug (ID per ancoraggio)", name: "slug", widget: "string" }
+      - label: "Caratteristiche"
+        name: "features"
+        widget: "list"
+        fields:
+          - { label: "Voce", name: "text", widget: "string" }
+          - { label: "Tooltip (spiegazione al ?)", name: "tip", widget: "string", required: false }
+      - { label: "Ordine", name: "order", widget: "number", default: 1 }
+
+  - name: "services_en"
+    label: "Services EN"
+    label_singular: "Service"
+    folder: "src/services_en"
+    create: true
+    delete: true
+    extension: "md"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - label: "Icon"
+        name: "icon"
+        widget: "select"
+        options: ["management", "permits", "supervision", "safety", "economics", "energy", "consulting", "network"]
+        default: "management"
+      - { label: "Slug (anchor ID)", name: "slug", widget: "string" }
+      - label: "Features"
+        name: "features"
+        widget: "list"
+        fields:
+          - { label: "Item", name: "text", widget: "string" }
+          - { label: "Tooltip (? explanation)", name: "tip", widget: "string", required: false }
+      - { label: "Order", name: "order", widget: "number", default: 1 }
+
+  - name: "projects_it"
+    label: "Progetti IT"
+    label_singular: "Progetto"
+    folder: "src/projects_it"
+    create: true
+    delete: true
+    extension: "md"
+    fields:
+      - { label: "Titolo", name: "title", widget: "string" }
+      - { label: "Descrizione", name: "description", widget: "text" }
+      - { label: "Immagine", name: "image", widget: "image", required: false }
+      - { label: "Categoria", name: "category", widget: "string" }
+      - { label: "Ordine", name: "order", widget: "number", default: 1 }
+
+  - name: "projects_en"
+    label: "Projects EN"
+    label_singular: "Project"
+    folder: "src/projects_en"
+    create: true
+    delete: true
+    extension: "md"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", default: 1 }

@@ -1,0 +1,67 @@
+---
+layout: base.njk
+lang: it
+title: "Progetti"
+description: "Build Hub — I nostri progetti in Sicilia. Scopri i lavori che abbiamo realizzato e le storie di successo dei nostri clienti."
+root: ""
+permalink: "/progetti.html"
+---
+
+  <section class="page-hero">
+    <div class="page-hero-glow"></div>
+    <div class="container">
+      <h1>I nostri progetti</h1>
+      <p>Ogni progetto è una storia di competenza e metodo</p>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container">
+      {% if collections.projects_it | length == 0 %}
+      <div class="projects-empty">
+        <div class="reveal">
+          <div class="projects-empty-icon">
+            <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h2>Prossimamente</h2>
+          <p>Siamo al lavoro per catalogare e presentare i progetti che abbiamo seguito, con immagini, descrizioni e risultati. Ogni intervento che gestiamo è unico, e vogliamo raccontarlo nel modo migliore.</p>
+          <p>Nel frattempo, se desideri conoscere i lavori che abbiamo realizzato o ricevere un portfolio personalizzato in base alle tue esigenze, siamo a tua disposizione.</p>
+          <a href="contatti.html" class="btn btn-primary btn-lg" style="margin-top: 0.5rem;">
+            Richiedi un portfolio
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+      {% else %}
+      <div class="progetti-grid reveal-stagger">
+        {% for p in collections.projects_it %}
+        <div class="progetto-card reveal">
+          <div class="progetto-img">
+            {% if p.data.image %}
+            <img src="{{ p.data.image }}" alt="{{ p.data.title }}" loading="lazy" />
+            {% else %}
+            <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            {% endif %}
+          </div>
+          <div class="progetto-info">
+            <h3>{{ p.data.title }}</h3>
+            <p>{{ p.data.description }}</p>
+            {% if p.data.category %}<span class="progetto-tag">{{ p.data.category }}</span>{% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="territorio-section">
+    <div class="territorio-glow"></div>
+    <div class="container">
+      <div class="reveal">
+        <div class="territorio-icon"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3L17 3l3.5 6.5L19 15l-3 6l-3.5 1L9 19L6 12Z"/></svg></div>
+        <h2>Radicati in Sicilia</h2>
+        <p>Operiamo sull'intero territorio siciliano con una conoscenza radicata delle specificità locali, del quadro normativo regionale e delle migliori pratiche costruttive dell'area mediterranea.</p>
+      </div>
+    </div>
+  </section>

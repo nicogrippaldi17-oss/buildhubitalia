@@ -104,6 +104,7 @@ collections:
         fields:
           - { label: "Indirizzo", name: "address", widget: "string" }
           - { label: "Telefono", name: "phone", widget: "string" }
+          - { label: "Telefono 2", name: "phone2", widget: "string", required: false }
           - { label: "Email", name: "email", widget: "string" }
 
   - name: "pages_en"

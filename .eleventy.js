@@ -12,10 +12,10 @@ module.exports = function (eleventyConfig) {
     return coll.getFilteredByGlob("src/services_en/*.md").sort((a, b) => a.data.order - b.data.order);
   });
   eleventyConfig.addCollection("projects_it", function (coll) {
-    return coll.getFilteredByGlob("src/projects_it/*.md").sort((a, b) => a.data.order - b.data.order);
+    return coll.getFilteredByGlob("src/projects_it/*.md").filter(p => p.data.published !== false).sort((a, b) => a.data.order - b.data.order);
   });
   eleventyConfig.addCollection("projects_en", function (coll) {
-    return coll.getFilteredByGlob("src/projects_en/*.md").sort((a, b) => a.data.order - b.data.order);
+    return coll.getFilteredByGlob("src/projects_en/*.md").filter(p => p.data.published !== false).sort((a, b) => a.data.order - b.data.order);
   });
 
   return {

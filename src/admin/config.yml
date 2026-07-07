@@ -251,6 +251,7 @@ collections:
       - { label: "Descrizione", name: "description", widget: "text" }
       - { label: "Immagine", name: "image", widget: "image", required: false }
       - { label: "Categoria", name: "category", widget: "string" }
+      - { label: "Pubblicato", name: "published", widget: "boolean", default: true, required: false }
       - { label: "Ordine", name: "order", widget: "number", default: 1 }
 
   - name: "projects_en"
@@ -265,4 +266,5 @@ collections:
       - { label: "Description", name: "description", widget: "text" }
       - { label: "Image", name: "image", widget: "image", required: false }
       - { label: "Category", name: "category", widget: "string" }
+      - { label: "Published", name: "published", widget: "boolean", default: true, required: false }
       - { label: "Order", name: "order", widget: "number", default: 1 }

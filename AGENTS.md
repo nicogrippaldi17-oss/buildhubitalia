@@ -88,10 +88,8 @@ buildhub-site/
 - **Google Fonts** — caricati via preconnect + link (non più @import)
 - **Meta description** — aggiornata in chi-siamo.njk e en/about.njk
 
-## Cose ancora da fare (da accordare col cliente)
-- [ ] Sostituire contatti placeholder (Via Example, telefono, email) in `base.njk`
-- [ ] Aggiornare indirizzo e telefono in JSON-LD (`base.njk`)
-- [ ] Sostituire `site.url` in `src/_data/site.json` con dominio reale
-- [ ] Aggiungere immagini reali (hero, servizi, progetti)
-- [ ] Decidere dominio definitivo
-- [ ] Deploy su Netlify
+## Consegna (da fare dopo il push)
+- [ ] Connettere repository a Netlify (root: `buildhub-site/`, build: `npm run build`, publish: `_site/`)
+- [ ] Abilitare Netlify Identity + Git Gateway
+- [ ] Invitare il cliente come utente CMS (email)
+- [ ] Puntare DNS `buildhubitalia.com` a Netlify

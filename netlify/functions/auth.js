@@ -79,7 +79,8 @@ exports.handler = async (event) => {
       const tokenData = await githubPostForm('/login/oauth/access_token', {
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET,
-        code: queryStringParameters.code
+        code: queryStringParameters.code,
+        redirect_uri: CALLBACK_URL
       })
 
       const accessToken = tokenData.access_token

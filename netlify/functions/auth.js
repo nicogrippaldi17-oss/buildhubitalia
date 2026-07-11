@@ -70,7 +70,8 @@ exports.handler = async (event) => {
 
   if (isAuth) {
     const state = crypto.randomUUID()
-    const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(CALLBACK_URL)}&scope=repo&state=${state}`
+    const redirectUri = CALLBACK_URL + '?provider=github'
+    const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=repo&state=${state}`
     return redirectResponse(githubAuthUrl)
   }
 
@@ -80,13 +81,15 @@ exports.handler = async (event) => {
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET,
         code: queryStringParameters.code,
-        redirect_uri: CALLBACK_URL
+        redirect_uri: CALLBACK_URL + '?provider=github'
       })
 
       const accessToken = tokenData.access_token
       if (!accessToken) {
         return jsonResponse(400, { error: 'Nessun access_token nella risposta', details: tokenData })
       }
+
+      const tokenPayload = JSON.stringify({ token: accessToken, provider: 'github' })
 
       const html = `<!DOCTYPE html>
 <html>
@@ -102,12 +105,15 @@ exports.handler = async (event) => {
       window.parent.postMessage(msg, '*')
     }
   }
-  sendMessage({ type: 'authorization', data: { token: ${JSON.stringify(accessToken)}, provider: 'github' } })
+  sendMessage('authorizing:github');
   setTimeout(function() {
-    if (!window.opener && window.parent === window) {
-      document.body.innerHTML = '<h3>Login riuscito! Puoi chiudere questa finestra.</h3>'
-    }
-  }, 2000)
+    sendMessage('authorization:github:success:${tokenPayload}');
+    setTimeout(function() {
+      if (!window.opener && window.parent === window) {
+        document.body.innerHTML = '<h3>Login riuscito! Puoi chiudere questa finestra.</h3>'
+      }
+    }, 2000)
+  }, 500)
 })()
 </script>
 </body>

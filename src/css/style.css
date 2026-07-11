@@ -302,7 +302,7 @@ h1, h2, h3, h4 {
     margin: 0 7px;
   }
   .nav-logo-capsule { width: 24%; padding: 0 6px; }
-  .nav-logo-img { height: 38px; }
+  .nav-logo-img { height: 36px; }
 }
 
 @media (max-width: 480px) {
@@ -318,7 +318,7 @@ h1, h2, h3, h4 {
     margin: 0 5px;
   }
   .nav-logo-capsule { width: 26%; padding: 0 4px; }
-  .nav-logo-img { height: 34px; }
+  .nav-logo-img { height: 32px; }
 }
 
 /* Footer language switcher (inline with other footer-bottom links) */

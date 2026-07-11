@@ -1,8 +1,9 @@
 ---
 title: "Ristrutturazione Residenziale"
-description: "Completa ristrutturazione di un appartamento nel centro di Catania, con interventi strutturali, impiantistici e finiture di pregio. Durata: 6 mesi."
+description: "Project management completo per la ristrutturazione di un'appartamento a Catania: progettazione, direzione lavori, coordinamento fornitori e controllo costi. Durata: 4 mesi."
 image: ""
-category: "Residenziale"
+category: "Ristrutturazione"
 published: false
 order: 1
+permalink: false
 ---

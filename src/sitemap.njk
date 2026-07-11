@@ -1,0 +1,30 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% for item in [
+  { url: "/", changefreq: "weekly", priority: "1.0" },
+  { url: "/chi-siamo.html", changefreq: "monthly", priority: "0.8" },
+  { url: "/servizi.html", changefreq: "monthly", priority: "0.8" },
+  { url: "/progetti.html", changefreq: "monthly", priority: "0.7" },
+  { url: "/contatti.html", changefreq: "monthly", priority: "0.9" },
+  { url: "/privacy.html", changefreq: "yearly", priority: "0.3" },
+  { url: "/cookie.html", changefreq: "yearly", priority: "0.3" },
+  { url: "/en/", changefreq: "weekly", priority: "1.0" },
+  { url: "/en/about.html", changefreq: "monthly", priority: "0.8" },
+  { url: "/en/services.html", changefreq: "monthly", priority: "0.8" },
+  { url: "/en/projects.html", changefreq: "monthly", priority: "0.7" },
+  { url: "/en/contact.html", changefreq: "monthly", priority: "0.9" },
+  { url: "/en/privacy.html", changefreq: "yearly", priority: "0.3" },
+  { url: "/en/cookie.html", changefreq: "yearly", priority: "0.3" }
+] %}
+  <url>
+    <loc>{{ site.url }}{{ item.url }}</loc>
+    <lastmod>2026-07-07</lastmod>
+    <changefreq>{{ item.changefreq }}</changefreq>
+    <priority>{{ item.priority }}</priority>
+  </url>
+{% endfor %}
+</urlset>

@@ -1,8 +1,9 @@
 ---
 title: "Residential Renovation"
-description: "Complete renovation of an apartment in the heart of Catania, including structural work, systems, and high-quality finishes. Duration: 6 months."
+description: "Complete project management for the renovation of an apartment in Catania: design, construction supervision, supplier coordination and cost control. Duration: 4 months."
 image: ""
-category: "Residential"
+category: "Renovation"
 published: false
 order: 1
+permalink: false
 ---

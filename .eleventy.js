@@ -1,3 +1,5 @@
+const htmlmin = require("html-minifier-terser");
+
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
@@ -16,6 +18,19 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.addCollection("projects_en", function (coll) {
     return coll.getFilteredByGlob("src/projects_en/*.md").filter(p => p.data.published !== false).sort((a, b) => a.data.order - b.data.order);
+  });
+
+  eleventyConfig.addTransform("htmlmin", function (content) {
+    if (this.page.outputPath && this.page.outputPath.endsWith(".html")) {
+      return htmlmin.minify(content, {
+        useShortDoctype: true,
+        removeComments: true,
+        collapseWhitespace: true,
+        minifyCSS: true,
+        minifyJS: true,
+      });
+    }
+    return content;
   });
 
   return {

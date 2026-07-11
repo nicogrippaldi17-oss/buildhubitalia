@@ -48,7 +48,7 @@ buildhub-site/
 ```
 
 ## Comandi
-- `npm run build` — genera il sito in `_site/`
+- `npm run build` — genera il sito in `_site/` (+ minifica CSS/JS)
 - `npm run serve` — server locale con live-reload su `http://localhost:8080`
 
 ## Per il deploy
@@ -81,12 +81,26 @@ buildhub-site/
 - **Language switcher** — spostato dal navbar al footer su mobile/tablet (< 1023px), rimane in navbar solo su desktop. Nel footer posizionato accanto a Privacy/Cookie Policy links
 
 ## SEO implementato
+- **Sitemap.xml** — `src/sitemap.njk` (14 URL, con priorità e changefreq)
+- **Robots.txt** — `src/robots.njk` (Allow: /, Disallow: /admin/)
+- **Google Search Console** — meta tag in `base.njk` (attivo se `site.search_console_meta` valorizzato)
+- **Google Analytics GA4** — gtag.js in `base.njk` (attivo se `site.ga_id` valorizzato)
 - **Canonical tag** — `src/_includes/base.njk` (basato su `site.url + page.url`)
 - **Open Graph** — og:title, og:description, og:url, og:image, og:locale
 - **Twitter Card** — summary_large_image
 - **JSON-LD** — Organization schema con indirizzo e contatto
 - **Google Fonts** — caricati via preconnect + link (non più @import)
 - **Meta description** — aggiornata in chi-siamo.njk e en/about.njk
+- **Minificazione HTML** — via `html-minifier-terser` (transform Eleventy)
+- **Minificazione CSS/JS** — via `csso` + `terser` (post-build script)
+
+## Configurazioni post-deploy
+Dopo il deploy su Netlify, attivare GA4 e Search Console:
+1. Ottenere **Measurement ID** (G-XXXXXXXXXX) da https://analytics.google.com
+2. Inserirlo in `src/_data/site.json` → campo `ga_id`
+3. Per Search Console: ottenere meta tag di verifica da https://search.google.com/search-console
+4. Inserirlo in `src/_data/site.json` → campo `search_console_meta`
+5. Oppure: verificare dominio via DNS (record TXT) — non serve modificare codice
 
 ## Consegna (da fare dopo il push)
 - [ ] Connettere repository a Netlify (root: `buildhub-site/`, build: `npm run build`, publish: `_site/`)

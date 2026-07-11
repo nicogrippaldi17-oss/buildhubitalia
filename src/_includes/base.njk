@@ -18,9 +18,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+{% if site.ga_id %}
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://www.google-analytics.com">
+{% endif %}
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="{{ root }}css/style.css" />
   <link rel="icon" href="{{ root }}favicon.svg" type="image/svg+xml" />
+{% if site.search_console_meta %}
+  <meta name="google-site-verification" content="{{ site.search_console_meta }}" />
+{% endif %}
+{% if site.ga_id %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga_id }}"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","{{ site.ga_id }}")</script>
+{% endif %}
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -148,6 +159,11 @@
       <div class="container">
         <div class="footer-bottom-inner">
           <div class="footer-bottom-links">
+{% if lang == "en" %}
+            <a href="{{ root }}chi-siamo.html" class="lang-switch" title="Italiano">IT</a>
+{% else %}
+            <a href="{{ root }}en/index.html" class="lang-switch" title="English">EN</a>
+{% endif %}
             <a href="{{ root }}{% if lang == 'en' %}en/{% endif %}privacy.html">{% if lang == "en" %}Privacy Policy{% else %}Privacy Policy{% endif %}</a>
             <a href="{{ root }}{% if lang == 'en' %}en/{% endif %}cookie.html">{% if lang == "en" %}Cookie Policy{% else %}Cookie Policy{% endif %}</a>
           </div>

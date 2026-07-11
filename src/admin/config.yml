@@ -1,7 +1,8 @@
 # Decap CMS Config — Build Hub
 
 backend:
-  name: git-gateway
+  name: github
+  repo: nicogrippaldi17-oss/buildhubitalia
   branch: main
 
 media_folder: "src/img/projects"

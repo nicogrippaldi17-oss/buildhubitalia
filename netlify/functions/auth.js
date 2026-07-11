@@ -1,5 +1,6 @@
 const https = require('https')
 const crypto = require('crypto')
+const querystring = require('querystring')
 
 const CLIENT_ID = process.env.GITHUB_OAUTH_CLIENT_ID
 const CLIENT_SECRET = process.env.GITHUB_OAUTH_CLIENT_SECRET
@@ -30,16 +31,18 @@ function redirectResponse(location) {
   }
 }
 
-function githubRequest(path, body) {
+function githubPostForm(path, params) {
   return new Promise((resolve, reject) => {
+    const body = querystring.stringify(params)
     const opts = {
       hostname: 'github.com',
       path,
-      method: body ? 'POST' : 'GET',
+      method: 'POST',
       headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Length': Buffer.byteLength(body),
         'Accept': 'application/json',
-        'User-Agent': 'BuildHub-CMS-Auth',
-        ...(body ? { 'Content-Type': 'application/json' } : {})
+        'User-Agent': 'BuildHub-CMS-Auth'
       }
     }
     const req = https.request(opts, (res) => {
@@ -51,7 +54,7 @@ function githubRequest(path, body) {
       })
     })
     req.on('error', reject)
-    if (body) req.write(JSON.stringify(body))
+    req.write(body)
     req.end()
   })
 }
@@ -73,16 +76,15 @@ exports.handler = async (event) => {
 
   if (isCallback) {
     try {
-      const tokenData = await githubRequest('/login/oauth/access_token', {
+      const tokenData = await githubPostForm('/login/oauth/access_token', {
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET,
-        code: queryStringParameters.code,
-        redirect_uri: CALLBACK_URL
+        code: queryStringParameters.code
       })
 
       const accessToken = tokenData.access_token
       if (!accessToken) {
-        return jsonResponse(400, { error: 'No access_token in response', details: tokenData })
+        return jsonResponse(400, { error: 'Nessun access_token nella risposta', details: tokenData })
       }
 
       const html = `<!DOCTYPE html>

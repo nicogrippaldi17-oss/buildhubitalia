@@ -4,6 +4,8 @@ backend:
   name: github
   repo: nicogrippaldi17-oss/buildhubitalia
   branch: main
+  base_url: https://buildhubitalia.netlify.app/.netlify/functions
+  auth_endpoint: auth
 
 media_folder: "src/img/projects"
 public_folder: "/img/projects"

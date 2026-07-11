@@ -62,7 +62,7 @@ exports.handler = async (event) => {
   }
 
   const { queryStringParameters } = event
-  const isAuth = queryStringParameters.type === 'github'
+  const isAuth = queryStringParameters.type === 'github' || queryStringParameters.provider === 'github'
   const isCallback = queryStringParameters.code
 
   if (isAuth) {

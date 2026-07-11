@@ -301,8 +301,9 @@ h1, h2, h3, h4 {
     letter-spacing: 1px;
     margin: 0 7px;
   }
-  .nav-logo-capsule { width: 24%; padding: 0 6px; }
-  .nav-logo-img { height: 36px; }
+  .nav-logo-capsule { width: 22%; padding: 0 4px; }
+  .logo-link { padding: 2px 8px; }
+  .nav-logo-img { height: 24px; }
 }
 
 @media (max-width: 480px) {
@@ -317,8 +318,9 @@ h1, h2, h3, h4 {
     letter-spacing: 0.8px;
     margin: 0 5px;
   }
-  .nav-logo-capsule { width: 26%; padding: 0 4px; }
-  .nav-logo-img { height: 32px; }
+  .nav-logo-capsule { width: 24%; padding: 0 2px; }
+  .logo-link { padding: 2px 6px; }
+  .nav-logo-img { height: 20px; }
 }
 
 /* Footer language switcher (inline with other footer-bottom links) */

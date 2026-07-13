@@ -1,10 +1,9 @@
 # Decap CMS Config — Build Hub
 
 backend:
-  name: github
-  repo: nicogrippaldi17-oss/buildhubitalia
-  branch: main
+  name: proxy
   proxy_url: https://buildhubitalia.netlify.app/.netlify/functions/proxy
+  branch: main
 
 media_folder: "src/img/projects"
 public_folder: "/img/projects"

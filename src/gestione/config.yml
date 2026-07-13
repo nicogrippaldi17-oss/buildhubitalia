@@ -1,0 +1,273 @@
+# Decap CMS Config — Build Hub
+
+backend:
+  name: github
+  repo: nicogrippaldi17-oss/buildhubitalia
+  branch: main
+  proxy_url: https://buildhubitalia.netlify.app/.netlify/functions/proxy
+
+media_folder: "src/img/projects"
+public_folder: "/img/projects"
+site_url: "https://buildhubitalia.com"
+display_url: "https://buildhubitalia.com"
+logo_url: "/img/logo.png"
+
+locale: "it"
+
+collections:
+  - name: "pages_it"
+    label: "Pagine IT"
+    label_singular: "Pagina IT"
+    description: "⚠️ Le modifiche qui NON si riflettono sulla versione EN. Dopo aver modificato una pagina IT, aggiorna anche la corrispondente in Pages EN."
+    create: false
+    delete: false
+    files:
+      - label: "Homepage"
+        name: "index"
+        file: "src/index.njk"
+        fields:
+          - { label: "Titolo SEO", name: "title", widget: "string" }
+          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
+          - { label: "Tagline Hero", name: "hero_tagline", widget: "text" }
+          - { label: "Testo Bottone Hero", name: "hero_cta", widget: "string" }
+          - label: "Valori"
+            name: "valori"
+            widget: "list"
+            fields:
+              - { label: "Titolo", name: "title", widget: "string" }
+              - { label: "Testo", name: "text", widget: "text" }
+          - { label: "Titolo CTA Finale", name: "cta_title", widget: "string" }
+          - { label: "Testo CTA Finale", name: "cta_text", widget: "text" }
+          - { label: "Bottone CTA", name: "cta_button", widget: "string" }
+
+      - label: "Chi Siamo"
+        name: "chi-siamo"
+        file: "src/chi-siamo.njk"
+        fields:
+          - { label: "Titolo SEO", name: "title", widget: "string" }
+          - { label: "Titolo Hero", name: "hero_title", widget: "string" }
+          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
+          - { label: "Titolo Storia", name: "storia_title", widget: "string" }
+          - { label: "Paragrafo 1 Storia", name: "storia_p1", widget: "text" }
+          - { label: "Paragrafo 2 Storia", name: "storia_p2", widget: "text" }
+          - { label: "Titolo Approccio", name: "approccio_title", widget: "string" }
+          - { label: "Intro Approccio", name: "approccio_intro", widget: "text" }
+          - label: "Punti Approccio"
+            name: "approccio_items"
+            widget: "list"
+            field: { label: "Testo", name: "text", widget: "string" }
+          - { label: "Titolo Visione", name: "visione_title", widget: "string" }
+          - { label: "Paragrafo 1 Visione", name: "visione_p1", widget: "text" }
+          - { label: "Paragrafo 2 Visione", name: "visione_p2", widget: "text" }
+          - { label: "Titolo Missione", name: "missione_title", widget: "string" }
+          - { label: "Paragrafo 1 Missione", name: "missione_p1", widget: "text" }
+          - { label: "Paragrafo 2 Missione", name: "missione_p2", widget: "text" }
+          - { label: "Titolo Valori", name: "valori_title", widget: "string" }
+          - label: "Card Valori"
+            name: "valori_cards"
+            widget: "list"
+            fields:
+              - { label: "Titolo", name: "title", widget: "string" }
+              - { label: "Testo", name: "text", widget: "text" }
+          - { label: "Titolo CTA", name: "cta_title", widget: "string" }
+          - { label: "Testo CTA", name: "cta_text", widget: "text" }
+          - { label: "Bottone CTA", name: "cta_button", widget: "string" }
+          - { label: "Link CTA", name: "cta_link", widget: "string" }
+          - { label: "Titolo Territorio", name: "territorio_title", widget: "string" }
+          - { label: "Testo Territorio", name: "territorio_text", widget: "text" }
+
+      - label: "Servizi"
+        name: "servizi"
+        file: "src/servizi.njk"
+        fields:
+          - { label: "Titolo SEO", name: "title", widget: "string" }
+          - { label: "Titolo Hero", name: "hero_title", widget: "string" }
+          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
+
+      - label: "Progetti"
+        name: "progetti"
+        file: "src/progetti.njk"
+        fields:
+          - { label: "Titolo SEO", name: "title", widget: "string" }
+          - { label: "Titolo Hero", name: "hero_title", widget: "string" }
+          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
+
+      - label: "Contatti"
+        name: "contatti"
+        file: "src/contatti.njk"
+        fields:
+          - { label: "Titolo SEO", name: "title", widget: "string" }
+          - { label: "Titolo Hero", name: "hero_title", widget: "string" }
+          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
+
+      - label: "Contatti Footer"
+        name: "contatti-footer"
+        file: "src/_data/contact.json"
+        fields:
+          - { label: "Indirizzo", name: "address", widget: "string" }
+          - { label: "Telefono", name: "phone", widget: "string" }
+          - { label: "Telefono 2", name: "phone2", widget: "string", required: false }
+          - { label: "Email", name: "email", widget: "string" }
+
+  - name: "pages_en"
+    label: "Pages EN"
+    label_singular: "Page EN"
+    description: "⚠️ Changes here do NOT apply to the IT version. After editing a page, also update the corresponding one in Pagine IT."
+    create: false
+    delete: false
+    files:
+      - label: "Homepage"
+        name: "index"
+        file: "src/en/index.njk"
+        fields:
+          - { label: "SEO Title", name: "title", widget: "string" }
+          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
+          - { label: "Hero Tagline", name: "hero_tagline", widget: "text" }
+          - { label: "Hero Button Text", name: "hero_cta", widget: "string" }
+          - label: "Values"
+            name: "valori"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - { label: "CTA Title", name: "cta_title", widget: "string" }
+          - { label: "CTA Text", name: "cta_text", widget: "text" }
+          - { label: "CTA Button", name: "cta_button", widget: "string" }
+
+      - label: "About Us"
+        name: "about"
+        file: "src/en/about.njk"
+        fields:
+          - { label: "SEO Title", name: "title", widget: "string" }
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
+          - { label: "Story Title", name: "storia_title", widget: "string" }
+          - { label: "Story Paragraph 1", name: "storia_p1", widget: "text" }
+          - { label: "Story Paragraph 2", name: "storia_p2", widget: "text" }
+          - { label: "Approach Title", name: "approccio_title", widget: "string" }
+          - { label: "Approach Intro", name: "approccio_intro", widget: "text" }
+          - label: "Approach Items"
+            name: "approccio_items"
+            widget: "list"
+            field: { label: "Text", name: "text", widget: "string" }
+          - { label: "Vision Title", name: "visione_title", widget: "string" }
+          - { label: "Vision Paragraph 1", name: "visione_p1", widget: "text" }
+          - { label: "Vision Paragraph 2", name: "visione_p2", widget: "text" }
+          - { label: "Mission Title", name: "missione_title", widget: "string" }
+          - { label: "Mission Paragraph 1", name: "missione_p1", widget: "text" }
+          - { label: "Mission Paragraph 2", name: "missione_p2", widget: "text" }
+          - { label: "Values Title", name: "valori_title", widget: "string" }
+          - label: "Value Cards"
+            name: "valori_cards"
+            widget: "list"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+          - { label: "CTA Title", name: "cta_title", widget: "string" }
+          - { label: "CTA Text", name: "cta_text", widget: "text" }
+          - { label: "CTA Button", name: "cta_button", widget: "string" }
+          - { label: "CTA Link", name: "cta_link", widget: "string" }
+          - { label: "Territory Title", name: "territorio_title", widget: "string" }
+          - { label: "Territory Text", name: "territorio_text", widget: "text" }
+
+      - label: "Services"
+        name: "services"
+        file: "src/en/services.njk"
+        fields:
+          - { label: "SEO Title", name: "title", widget: "string" }
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
+
+      - label: "Projects"
+        name: "projects"
+        file: "src/en/projects.njk"
+        fields:
+          - { label: "SEO Title", name: "title", widget: "string" }
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
+
+      - label: "Contact"
+        name: "contact"
+        file: "src/en/contact.njk"
+        fields:
+          - { label: "SEO Title", name: "title", widget: "string" }
+          - { label: "Hero Title", name: "hero_title", widget: "string" }
+          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
+
+  - name: "services_it"
+    label: "Servizi IT"
+    label_singular: "Servizio"
+    folder: "src/services_it"
+    create: true
+    delete: true
+    extension: "md"
+    fields:
+      - { label: "Titolo", name: "title", widget: "string" }
+      - { label: "Descrizione", name: "description", widget: "text" }
+      - label: "Icona"
+        name: "icon"
+        widget: "select"
+        options: ["management", "permits", "supervision", "safety", "economics", "energy", "consulting", "network"]
+        default: "management"
+      - { label: "Slug (ID per ancoraggio)", name: "slug", widget: "string" }
+      - label: "Caratteristiche"
+        name: "features"
+        widget: "list"
+        fields:
+          - { label: "Voce", name: "text", widget: "string" }
+          - { label: "Tooltip (spiegazione al ?)", name: "tip", widget: "string", required: false }
+      - { label: "Ordine", name: "order", widget: "number", default: 1 }
+
+  - name: "services_en"
+    label: "Services EN"
+    label_singular: "Service"
+    folder: "src/services_en"
+    create: true
+    delete: true
+    extension: "md"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - label: "Icon"
+        name: "icon"
+        widget: "select"
+        options: ["management", "permits", "supervision", "safety", "economics", "energy", "consulting", "network"]
+        default: "management"
+      - { label: "Slug (anchor ID)", name: "slug", widget: "string" }
+      - label: "Features"
+        name: "features"
+        widget: "list"
+        fields:
+          - { label: "Item", name: "text", widget: "string" }
+          - { label: "Tooltip (? explanation)", name: "tip", widget: "string", required: false }
+      - { label: "Order", name: "order", widget: "number", default: 1 }
+
+  - name: "projects_it"
+    label: "Progetti IT"
+    label_singular: "Progetto"
+    folder: "src/projects_it"
+    create: true
+    delete: true
+    extension: "md"
+    fields:
+      - { label: "Titolo", name: "title", widget: "string" }
+      - { label: "Descrizione", name: "description", widget: "text" }
+      - { label: "Immagine", name: "image", widget: "image", required: false }
+      - { label: "Categoria", name: "category", widget: "string" }
+      - { label: "Pubblicato", name: "published", widget: "boolean", default: true, required: false }
+      - { label: "Ordine", name: "order", widget: "number", default: 1 }
+
+  - name: "projects_en"
+    label: "Projects EN"
+    label_singular: "Project"
+    folder: "src/projects_en"
+    create: true
+    delete: true
+    extension: "md"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Category", name: "category", widget: "string" }
+      - { label: "Published", name: "published", widget: "boolean", default: true, required: false }
+      - { label: "Order", name: "order", widget: "number", default: 1 }

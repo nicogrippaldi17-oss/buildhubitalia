@@ -5,6 +5,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/js");
   eleventyConfig.addPassthroughCopy("src/img");
   eleventyConfig.addPassthroughCopy("src/admin");
+  eleventyConfig.addPassthroughCopy("src/gestione");
   eleventyConfig.addPassthroughCopy("src/favicon.svg");
 
   eleventyConfig.addCollection("services_it", function (coll) {

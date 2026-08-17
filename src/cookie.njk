@@ -34,8 +34,13 @@ permalink: "/cookie.html"
         <p>Il sito è realizzato con tecnologia statica (generatore di siti statici Eleventy) e non utilizza sistemi di gestione dei contenuti dinamici, database o sessioni lato server: di conseguenza non impiega cookie di sessione persistenti né cookie di autenticazione.</p>
 
         <h3>2.2 Cookie analitici</h3>
-        <p>Questo sito utilizza <strong>Google Analytics 4 (GA4)</strong> per misurare il traffico e comprendere in forma aggregata come viene utilizzato il sito. GA4 installa i cookie <strong><code>_ga</code></strong>, <strong><code>_gid</code></strong> e <strong><code>_gat</code></strong>.</p>
-        <p>I cookie analitici vengono <strong>installati solo previo consenso</strong> dell'utente, espresso tramite l'apposito banner. I dati raccolti sono utilizzati in forma aggregata e anonima per migliorare il sito; non sono impiegati per la profilazione dell'utente. È possibile limitare la raccolta dei dati con l'opzione <strong>anonymize_ip</strong> di Google. Per maggiori informazioni: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Informativa privacy di Google</a>.</p>
+        <p>Questo sito utilizza <strong>Google Analytics 4 (GA4)</strong> per misurare il traffico e comprendere in forma aggregata come viene utilizzato il sito. GA4 installa i cookie <strong><code>_ga</code></strong>, <strong><code>_gid</code></strong> e <strong><code>_gat</code></strong>, con la seguente durata:</p>
+        <ul>
+          <li><strong><code>_ga</code></strong> — 2 anni (identificativo di sessione);</li>
+          <li><strong><code>_gid</code></strong> — 24 ore (identificativo di sessione giornaliero);</li>
+          <li><strong><code>_gat</code></strong> — 1 minuto (limitazione della frequenza delle richieste).</li>
+        </ul>
+        <p>I cookie analitici vengono <strong>installati solo previo consenso</strong> dell'utente, espresso tramite l'apposito banner. I dati raccolti sono utilizzati in forma aggregata e anonima per migliorare il sito; non sono impiegati per la profilazione dell'utente e sono conservati per un periodo non superiore a <strong>2 mesi</strong>. È possibile limitare la raccolta dei dati con l'opzione <strong>anonymize_ip</strong> di Google. Per maggiori informazioni: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Informativa privacy di Google</a>.</p>
         <p>Se l'utente rifiuta il consenso, nessun cookie analitico viene installato e non vengono effettuate misurazioni di traffico.</p>
 
         <h3>2.3 Cookie di profilazione e marketing</h3>
@@ -47,20 +52,31 @@ permalink: "/cookie.html"
           <li><strong>Google Fonts</strong> (fonts.googleapis.com, fonts.gstatic.com) — servizio di caratteri web. La richiesta dei font comporta la trasmissione dell'indirizzo IP dell'utente ai server di Google. Google non imposta cookie per questo servizio. <a href="https://developers.google.com/fonts/faq/privacy" target="_blank" rel="noopener">Maggiori informazioni</a>.</li>
           <li><strong>Mappa interattiva Leaflet</strong> con tile CARTO e dati OpenStreetMap — servizio di visualizzazione cartografica. La mappa carica tile da <strong>cartocdn.com</strong> e dati da <strong>openstreetmap.org</strong>, che ricevono l'indirizzo IP dell'utente per erogare il contenuto. Non vengono installati cookie.</li>
           <li><strong>Nominatim</strong> (geocoding) e <strong>OSRM</strong> (calcolo percorsi) — servizi di OpenStreetMap utilizzati per la funzionalità di ricerca indirizzi nella mappa dei contatti. I dati inseriti dall'utente sono trasmessi a questi servizi per l'elaborazione della richiesta. Non vengono installati cookie.</li>
+          <li><strong>Cloudflare</strong> (CDN e hosting) — infrastruttura di distribuzione dei contenuti del sito. Cloudflare riceve l'indirizzo IP dell'utente per erogare le pagine e garantire la sicurezza della connessione. Non vengono installati cookie di profilazione.</li>
+          <li><strong>Resend</strong> — servizio di invio delle email generate dal form di contatto. I dati inseriti nel form sono trasmessi a Resend esclusivamente al momento dell'invio per la consegna della richiesta. Non vengono installati cookie.</li>
         </ul>
         <p>Questi servizi sono integrati esclusivamente per finalità tecniche e non comportano attività di profilazione o tracciamento dell'utente. L'eventuale apertura di link a siti esterni, ivi inclusi quelli del Garante Privacy, non comporta l'installazione di cookie da parte del nostro sito.</p>
 
-        <h2>4. Come disabilitare i cookie</h2>
-        <p>Poiché il sito utilizza esclusivamente cookie tecnici essenziali, non è previsto un banner di consenso cookie. Qualora l'utente desideri comunque disabilitare tutti i cookie (inclusi quelli tecnici), può farlo attraverso le impostazioni del proprio browser. Di seguito i link alle guide per i browser più comuni:</p>
+        <h2>4. Il banner di consenso</h2>
+        <p>Alla prima visita, il sito mostra un <strong>banner di consenso</strong> che consente all'utente di scegliere se accettare o rifiutare i cookie analitici di Google Analytics:</p>
+        <ul>
+          <li><strong>Accetta</strong>: vengono installati i cookie analitici descritti al punto 2.2;</li>
+          <li><strong>Rifiuta</strong>: nessun cookie analitico viene installato e non vengono effettuate misurazioni di traffico.</li>
+        </ul>
+        <p>La scelta effettuata viene memorizzata sul dispositivo dell'utente. I cookie analitici vengono caricati <strong>solo dopo</strong> l'accettazione esplicita da parte dell'utente.</p>
+
+        <h2>5. Come disabilitare i cookie e gestire il consenso</h2>
+        <p>L'utente può modificare o revocare la propria scelta in qualsiasi momento cancellando i cookie del sito dalle impostazioni del browser o cancellando i dati di navigazione; al successivo accesso il banner verrà mostrato nuovamente. In alternativa, può scrivere a <a href="mailto:buildhubitalia@gmail.com">buildhubitalia@gmail.com</a>.</p>
+        <p>È inoltre possibile disabilitare tutti i cookie (inclusi quelli tecnici) attraverso le impostazioni del proprio browser. Di seguito i link alle guide per i browser più comuni:</p>
         <ul>
           <li><strong>Google Chrome:</strong> <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Guida</a></li>
           <li><strong>Mozilla Firefox:</strong> <a href="https://support.mozilla.org/it/kb/Attivare%20e%20disattivare%20i%20cookie" target="_blank" rel="noopener">Guida</a></li>
           <li><strong>Safari:</strong> <a href="https://support.apple.com/it-it/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Guida</a></li>
           <li><strong>Microsoft Edge:</strong> <a href="https://support.microsoft.com/it-it/microsoft-edge/eliminare-i-cookie-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">Guida</a></li>
         </ul>
-        <p>Si segnala che la disabilitazione dei cookie tecnici potrebbe compromettere il corretto funzionamento del sito.</p>
+        <p>Si segnala che la disabilitazione dei cookie tecnici potrebbe compromettere il corretto funzionamento del sito. Per il trattamento dei dati personali si rimanda alla <a href="privacy.html">Privacy Policy</a>.</p>
 
-        <h2>5. Modifiche alla presente Cookie Policy</h2>
+        <h2>6. Modifiche alla presente Cookie Policy</h2>
         <p>La presente Cookie Policy può essere soggetta a modifiche nel tempo. Si invitano gli utenti a consultare periodicamente questa pagina. La data dell'ultimo aggiornamento è indicata in cima al documento.</p>
 
       </div>

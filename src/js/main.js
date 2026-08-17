@@ -153,8 +153,13 @@ document.addEventListener("DOMContentLoaded", function () {
       if (spinner) spinner.classList.add("show");
       if (btnText) btnText.textContent = texts.sending;
       var formData = new FormData(contactForm);
-      fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: new URLSearchParams(formData).toString() })
-        .then(function () {
+      fetch("/contact", { method: "POST", body: formData })
+        .then(function (res) {
+          if (!res.ok) throw new Error("request failed");
+          return res.json();
+        })
+        .then(function (data) {
+          if (!data || !data.ok) throw new Error("request failed");
           if (submitBtn) submitBtn.disabled = false;
           if (spinner) spinner.classList.remove("show");
           if (btnText) btnText.textContent = texts.sendBtn;

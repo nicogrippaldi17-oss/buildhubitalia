@@ -2,7 +2,7 @@
 
 backend:
   name: proxy
-  proxy_url: https://buildhubitalia.netlify.app/.netlify/functions/proxy
+  proxy_url: https://buildhubitalia.pages.dev/proxy
   branch: main
 
 media_folder: "src/img/projects"

@@ -4,4 +4,8 @@ _site/
 
 # Local Netlify folder
 .netlify
+
+# Local Cloudflare / wrangler
+.wrangler/
+
 deno.lock

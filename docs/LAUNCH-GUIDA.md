@@ -84,15 +84,14 @@ consigliabile eliminarlo per evitare confusione:
 
 ### 3.2 Vecchio sottodominio Cloudflare Pages
 
-Il sottodominio `buildhubitalia.pages.dev` risultava già occupato da un progetto "orfano"
-creato con un account precedente. Per liberarlo:
+Il sottodominio `buildhubitalia.pages.dev` era occupato da un progetto "orfano"
+creato con l'account personale **salvograsso93@gmail.com** (usato solo in fase di test).
+Il progetto è stato **eliminato il 17/08/2026** (Workers & Pages → `buildhubitalia` →
+Settings → Danger zone → Delete project). Verificato: il dominio ora risponde 530
+(progetto inesistente) e il sito live è intatto.
 
-1. Accedere all'account Cloudflare usato in fase di test iniziale
-2. Cloudflare Pages → selezionare il progetto `buildhubitalia` → **Settings → Danger zone → Delete project**
-3. Il dominio `buildhubitalia.pages.dev` tornerà disponibile
-
-> Il sito pubblico usa `buildhubitalia.com` / `www.buildhubitalia.com`: la pulizia di
-> `buildhubitalia.pages.dev` **non è necessaria** per il funzionamento del sito.
+> Il sito pubblico usa `buildhubitalia.com` / `www.buildhubitalia.com` sul progetto
+> `buildhubitalia-3sg` (account Buildhubitalia@gmail.com): nessun impatto dal progetto orfano.
 
 ---
 

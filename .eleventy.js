@@ -7,6 +7,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/gestione");
   eleventyConfig.addPassthroughCopy("src/favicon.svg");
+  eleventyConfig.addPassthroughCopy("src/favicon.png");
+  eleventyConfig.addPassthroughCopy("src/apple-touch-icon.png");
 
   eleventyConfig.addCollection("services_it", function (coll) {
     return coll.getFilteredByGlob("src/services_it/*.md").sort((a, b) => a.data.order - b.data.order);

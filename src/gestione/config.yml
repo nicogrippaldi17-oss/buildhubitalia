@@ -2,7 +2,7 @@
 
 backend:
   name: proxy
-  proxy_url: https://buildhubitalia.pages.dev/proxy
+  proxy_url: https://buildhubitalia.com/proxy
   branch: main
 
 media_folder: "src/img/projects"

@@ -173,4 +173,44 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
   }
+
+  // ----- COOKIE CONSENT (Google Analytics) -----
+  var consentKey = "bh_consent";
+  var gaId = window.BH_GA_ID || "";
+
+  function loadGA() {
+    if (!gaId || window.__bhGaLoaded) return;
+    window.__bhGaLoaded = true;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + gaId;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag("js", new Date());
+    gtag("config", gaId, { anonymize_ip: true });
+  }
+
+  var banner = document.getElementById("cookie-banner");
+  var consent = null;
+  try { consent = localStorage.getItem(consentKey); } catch (e) {}
+
+  if (consent === "accepted") {
+    loadGA();
+  } else if (!consent && banner) {
+    banner.classList.add("show");
+    var acceptBtn = document.getElementById("cookie-accept");
+    var declineBtn = document.getElementById("cookie-decline");
+    function dismiss(value) {
+      try { localStorage.setItem(consentKey, value); } catch (e) {}
+      banner.classList.remove("show");
+    }
+    if (acceptBtn) acceptBtn.addEventListener("click", function () {
+      dismiss("accepted");
+      loadGA();
+    });
+    if (declineBtn) declineBtn.addEventListener("click", function () {
+      dismiss("rejected");
+    });
+  }
 });

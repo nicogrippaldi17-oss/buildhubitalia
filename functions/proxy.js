@@ -61,7 +61,7 @@ function json(status, data) {
 export async function onRequest(context) {
   const { env } = context;
   const token = env.GITHUB_PAT;
-  const repo = env.REPO || 'nicogrippaldi17-oss/buildhubitalia';
+  const repo = env.GITHUB_REPO || 'nicogrippaldi17-oss/buildhubitalia';
   const mediaFolder = env.MEDIA_FOLDER || DEF_MEDIA_FOLDER;
 
   if (!token) {

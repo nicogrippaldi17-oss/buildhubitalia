@@ -1,6 +1,6 @@
 export async function onRequest(context) {
   const url = new URL(context.request.url);
-  if (url.hostname === "www.buildhubitalia.com") {
+  if (url.hostname !== "buildhubitalia.com") {
     url.hostname = "buildhubitalia.com";
     return Response.redirect(url.toString(), 301);
   }

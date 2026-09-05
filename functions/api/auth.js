@@ -33,17 +33,15 @@ export async function onRequest({ request, env }) {
     return new Response(
       `<html><body>
        <script>
-         (function() {
-           var msg = ${JSON.stringify(msg)};
-           // Manda il token al CMS via postMessage
-           if (window.opener) {
-             window.opener.postMessage(msg, "*");
-           }
-           // Chiudi dopo 1 secondo (lascia tempo al CMS di ricevere il messaggio)
-           setTimeout(function() { window.close(); }, 1000);
-         })();
+         // 1. Salva il token in localStorage (stessa origine del CMS)
+         localStorage.setItem("gh_oauth_token", ${JSON.stringify(token)});
+         // 2. Manda il token al CMS via postMessage (fallback se il popup ha opener)
+         if (window.opener) {
+           window.opener.postMessage(${JSON.stringify(msg)}, "*");
+         }
+         // 3. Redirect al CMS che leggerà il token da localStorage
+         window.location.href = "/admin/";
        </script>
-       <p>Login effettuato. Chiudi questa finestra.</p>
        </body></html>`,
       { status: 200, headers: { "Content-Type": "text/html; charset=utf-8" } }
     );

@@ -22,37 +22,37 @@ export async function onRequest({ request, env }) {
     if (data.error) {
       const errorMsg = data.error_description || data.error;
       return new Response(
-        `<html><body><script>
-          if (window.opener) {
-            window.opener.postMessage("authorization:github:error:${errorMsg}", window.location.origin);
-          }
-          window.close();
-        </script><p>Error: ${errorMsg}</p></body></html>`,
+        `<html><body><h3>Error</h3><p>${errorMsg}</p><script>
+          try { localStorage.setItem("gh_oauth_error", ${JSON.stringify(errorMsg)}); } catch(e) {}
+          if (window.opener) window.opener.postMessage("authorization:github:error:${errorMsg}", "*");
+          setTimeout(function() { window.close(); }, 100);
+        </script></body></html>`,
         { status: 200, headers: { "Content-Type": "text/html; charset=utf-8" } }
       );
     }
 
-    const payload = JSON.stringify({ token: data.access_token, provider: "github" });
+    const token = data.access_token;
+    const successMsg = "authorization:github:success:" + JSON.stringify({ token: token, provider: "github" });
+
     return new Response(
-      `<html><body><script>
-        var msg = "authorization:github:success:${payload}";
+      `<html><body><h3>Login successful</h3><p>You may close this window.</p><script>
+        try { localStorage.setItem("gh_oauth_token", ${JSON.stringify(token)}); } catch(e) {}
         if (window.opener) {
-          window.opener.postMessage(msg, window.location.origin);
+          window.opener.postMessage(${JSON.stringify(successMsg)}, "*");
         }
-        window.close();
-        document.body.innerHTML = "<p>Login successful. You may close this window.</p>";
+        setTimeout(function() { window.close(); }, 200);
       </script></body></html>`,
       { status: 200, headers: { "Content-Type": "text/html; charset=utf-8" } }
     );
   }
 
-  // Step 1: Initial request — redirect to GitHub OAuth via HTML (not 302)
+  // Step 1: Initial request — redirect to GitHub OAuth
   const redirectUri = `${url.origin}/api/auth`;
   const scope = "repo,user";
   const authUrl = `https://github.com/login/oauth/authorize?client_id=${env.GITHUB_CLIENT_ID}&scope=${encodeURIComponent(scope)}&redirect_uri=${encodeURIComponent(redirectUri)}`;
 
   return new Response(
-    `<html><body><script>window.location.href = ${JSON.stringify(authUrl)};</script></body></html>`,
+    `<html><body><p>Redirecting to GitHub...</p><script>window.location.href = ${JSON.stringify(authUrl)};</script></body></html>`,
     { status: 200, headers: { "Content-Type": "text/html; charset=utf-8" } }
   );
 }

@@ -94,13 +94,13 @@ cta_button: "Request a consultation"
     <div class="container">
       {% set stat_items = [
         { number: collections.projects_en.length, label: "Completed Projects" },
-        { number: site.year - 2026 + 1, label: "Years of Experience" },
+        { number: 1, label: "Years of Experience", dynamic: "years" },
         { number: collections.services_en.length, label: "Services Offered" }
       ] %}
       <div class="stats-grid reveal-stagger">
         {% for stat in stat_items %}
         <div>
-          <div class="stat-number" data-target="{{ stat.number }}">0</div>
+          <div class="stat-number" data-target="{{ stat.number }}"{% if stat.dynamic %} data-dynamic="{{ stat.dynamic }}"{% endif %}></div>
           <p class="stat-label">{{ stat.label }}</p>
         </div>
         {% endfor %}

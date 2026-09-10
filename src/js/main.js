@@ -64,13 +64,10 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     statNumbers.forEach(function (el) {
-      const text = el.textContent.trim();
-      const num = parseInt(text.replace(/[^0-9]/g, ""), 10);
-      if (!isNaN(num)) {
-        el.setAttribute("data-target", num);
-        // Extract suffix (any non-digit character after number)
-        const match = text.match(/[^0-9]+$/);
-        if (match) el.setAttribute("data-suffix", match[0]);
+      var target = parseInt(el.getAttribute("data-target"), 10);
+      if (el.getAttribute("data-dynamic") === "years") {
+        target = new Date().getFullYear() - 2026 + 1;
+        el.setAttribute("data-target", target);
       }
       el.textContent = "0";
       counterObserver.observe(el);

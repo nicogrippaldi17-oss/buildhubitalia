@@ -28,24 +28,33 @@ collections:
         file: "src/index.njk"
         fields:
           - { label: "Titolo SEO", name: "title", widget: "string" }
+          - { label: "Meta Description", name: "description", widget: "text", required: false }
           - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
           - { label: "Tagline Hero", name: "hero_tagline", widget: "text" }
           - { label: "Testo Bottone Hero", name: "hero_cta", widget: "string" }
+          - { label: "Titolo Sezione Metodo", name: "method_title", widget: "string", default: "Il nostro metodo" }
+          - { label: "Titolo Sezione Servizi", name: "services_title", widget: "string", default: "I nostri servizi" }
           - label: "Valori"
             name: "valori"
             widget: "list"
             fields:
               - { label: "Titolo", name: "title", widget: "string" }
               - { label: "Testo", name: "text", widget: "text" }
+          - { label: "Label Stats Progetti", name: "stat_projects_label", widget: "string", default: "Progetti Completati" }
+          - { label: "Label Stats Anni", name: "stat_years_label", widget: "string", default: "Anni di Esperienza" }
+          - { label: "Label Stats Servizi", name: "stat_services_label", widget: "string", default: "Servizi Offerti" }
           - { label: "Titolo CTA Finale", name: "cta_title", widget: "string" }
           - { label: "Testo CTA Finale", name: "cta_text", widget: "text" }
           - { label: "Bottone CTA", name: "cta_button", widget: "string" }
+          - { label: "Titolo Territorio", name: "territorio_title", widget: "string", default: "Radicati in Sicilia" }
+          - { label: "Testo Territorio", name: "territorio_text", widget: "text", default: "Operiamo sull'intero territorio siciliano con una conoscenza radicata delle specificità locali, del quadro normativo regionale e delle migliori pratiche costruttive dell'area mediterranea." }
 
       - label: "Chi Siamo"
         name: "chi-siamo"
         file: "src/chi-siamo.njk"
         fields:
           - { label: "Titolo SEO", name: "title", widget: "string" }
+          - { label: "Meta Description", name: "description", widget: "text", required: false }
           - { label: "Titolo Hero", name: "hero_title", widget: "string" }
           - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
           - { label: "Titolo Storia", name: "storia_title", widget: "string" }
@@ -82,14 +91,19 @@ collections:
         file: "src/servizi.njk"
         fields:
           - { label: "Titolo SEO", name: "title", widget: "string" }
+          - { label: "Meta Description", name: "description", widget: "text", required: false }
           - { label: "Titolo Hero", name: "hero_title", widget: "string" }
           - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
+          - { label: "Titolo CTA Finale", name: "cta_final_title", widget: "string", default: "Non sai qual è il servizio giusto per te?" }
+          - { label: "Testo CTA Finale", name: "cta_final_text", widget: "text", default: "Raccontaci il tuo progetto. Ti ascolteremo, analizzeremo le tue esigenze e ti guideremo verso la soluzione migliore, senza impegno." }
+          - { label: "Bottone CTA Finale", name: "cta_final_button", widget: "string", default: "Parlaci del tuo progetto" }
 
       - label: "Progetti"
         name: "progetti"
         file: "src/progetti.njk"
         fields:
           - { label: "Titolo SEO", name: "title", widget: "string" }
+          - { label: "Meta Description", name: "description", widget: "text", required: false }
           - { label: "Titolo Hero", name: "hero_title", widget: "string" }
           - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
 
@@ -98,8 +112,16 @@ collections:
         file: "src/contatti.njk"
         fields:
           - { label: "Titolo SEO", name: "title", widget: "string" }
+          - { label: "Meta Description", name: "description", widget: "text", required: false }
           - { label: "Titolo Hero", name: "hero_title", widget: "string" }
           - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
+          - { label: "Titolo Cosa Succede", name: "process_title", widget: "string", default: "Cosa succede dopo" }
+          - { label: "Titolo Step 1", name: "step1_title", widget: "string", default: "Raccontaci il tuo progetto" }
+          - { label: "Testo Step 1", name: "step1_text", widget: "text", default: "Compila il form, scrivici una mail o chiamaci. Abbiamo bisogno di capire cosa vuoi realizzare, in che contesto e con quali aspettative." }
+          - { label: "Titolo Step 2", name: "step2_title", widget: "string", default: "Analizziamo la richiesta" }
+          - { label: "Testo Step 2", name: "step2_text", widget: "text", default: "Valutiamo il contesto tecnico e normativo, le criticità e le opportunità. Se necessario, fissiamo un incontro senza impegno per approfondire." }
+          - { label: "Titolo Step 3", name: "step3_title", widget: "string", default: "Ricevi piano e preventivo" }
+          - { label: "Testo Step 3", name: "step3_text", widget: "text", default: "Ti presentiamo un percorso chiaro, con tempistiche, fasi operative e una stima trasparente dei costi. Senza sorprese, senza vincoli." }
 
       - label: "Contatti Footer"
         name: "contatti-footer"
@@ -122,24 +144,33 @@ collections:
         file: "src/en/index.njk"
         fields:
           - { label: "SEO Title", name: "title", widget: "string" }
+          - { label: "Meta Description", name: "description", widget: "text", required: false }
           - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
           - { label: "Hero Tagline", name: "hero_tagline", widget: "text" }
           - { label: "Hero Button Text", name: "hero_cta", widget: "string" }
+          - { label: "Method Section Title", name: "method_title", widget: "string", default: "Our method" }
+          - { label: "Services Section Title", name: "services_title", widget: "string", default: "Our services" }
           - label: "Values"
             name: "valori"
             widget: "list"
             fields:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Text", name: "text", widget: "text" }
+          - { label: "Stats Label Projects", name: "stat_projects_label", widget: "string", default: "Completed Projects" }
+          - { label: "Stats Label Years", name: "stat_years_label", widget: "string", default: "Years of Experience" }
+          - { label: "Stats Label Services", name: "stat_services_label", widget: "string", default: "Services Offered" }
           - { label: "CTA Title", name: "cta_title", widget: "string" }
           - { label: "CTA Text", name: "cta_text", widget: "text" }
           - { label: "CTA Button", name: "cta_button", widget: "string" }
+          - { label: "Territory Title", name: "territorio_title", widget: "string", default: "Rooted in Sicily" }
+          - { label: "Territory Text", name: "territorio_text", widget: "text", default: "We operate throughout Sicily with deep-rooted knowledge of local specificities, the regional regulatory framework and the best construction practices of the Mediterranean area." }
 
       - label: "About Us"
         name: "about"
         file: "src/en/about.njk"
         fields:
           - { label: "SEO Title", name: "title", widget: "string" }
+          - { label: "Meta Description", name: "description", widget: "text", required: false }
           - { label: "Hero Title", name: "hero_title", widget: "string" }
           - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
           - { label: "Story Title", name: "storia_title", widget: "string" }
@@ -176,14 +207,19 @@ collections:
         file: "src/en/services.njk"
         fields:
           - { label: "SEO Title", name: "title", widget: "string" }
+          - { label: "Meta Description", name: "description", widget: "text", required: false }
           - { label: "Hero Title", name: "hero_title", widget: "string" }
           - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
+          - { label: "CTA Final Title", name: "cta_final_title", widget: "string", default: "Not sure which service is right for you?" }
+          - { label: "CTA Final Text", name: "cta_final_text", widget: "text", default: "Tell us about your project. We will listen, analyse your needs and guide you towards the best solution, with no obligation." }
+          - { label: "CTA Final Button", name: "cta_final_button", widget: "string", default: "Tell us about your project" }
 
       - label: "Projects"
         name: "projects"
         file: "src/en/projects.njk"
         fields:
           - { label: "SEO Title", name: "title", widget: "string" }
+          - { label: "Meta Description", name: "description", widget: "text", required: false }
           - { label: "Hero Title", name: "hero_title", widget: "string" }
           - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
 
@@ -192,8 +228,16 @@ collections:
         file: "src/en/contact.njk"
         fields:
           - { label: "SEO Title", name: "title", widget: "string" }
+          - { label: "Meta Description", name: "description", widget: "text", required: false }
           - { label: "Hero Title", name: "hero_title", widget: "string" }
           - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
+          - { label: "Process Title", name: "process_title", widget: "string", default: "What happens next" }
+          - { label: "Step 1 Title", name: "step1_title", widget: "string", default: "Tell us about your project" }
+          - { label: "Step 1 Text", name: "step1_text", widget: "text", default: "Fill in the form, send us an email or give us a call. We need to understand what you want to achieve, in what context and with what expectations." }
+          - { label: "Step 2 Title", name: "step2_title", widget: "string", default: "We analyse your request" }
+          - { label: "Step 2 Text", name: "step2_text", widget: "text", default: "We assess the technical and regulatory context, the challenges and the opportunities. If needed, we schedule a no-obligation meeting to go deeper into the details." }
+          - { label: "Step 3 Title", name: "step3_title", widget: "string", default: "Receive plan and quote" }
+          - { label: "Step 3 Text", name: "step3_text", widget: "text", default: "We present you with a clear roadmap, complete with timelines, operational phases and a transparent cost estimate. No surprises, no strings attached." }
 
   - name: "services_it"
     label: "Servizi IT"

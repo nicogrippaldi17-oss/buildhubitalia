@@ -62,10 +62,10 @@ hero_subtitle: "From design to delivery, a single interlocutor for every phase o
   <section class="section bg-white">
     <div class="container text-center">
       <div class="reveal" style="max-width: 640px; margin: 0 auto;">
-        <h2 class="section-title" style="margin-bottom: 1rem;">Not sure which service is right for you?</h2>
-        <p style="color: rgba(10,10,10,0.55); font-size: 1.0625rem; line-height: 1.7; margin-bottom: 2rem;">Tell us about your project. We will listen, analyse your needs and guide you towards the best solution, with no obligation.</p>
+        <h2 class="section-title" style="margin-bottom: 1rem;">{{ cta_final_title | default("Not sure which service is right for you?") }}</h2>
+        <p style="color: rgba(10,10,10,0.55); font-size: 1.0625rem; line-height: 1.7; margin-bottom: 2rem;">{{ cta_final_text | default("Tell us about your project. We will listen, analyse your needs and guide you towards the best solution, with no obligation.") }}</p>
         <a href="contact.html" class="btn btn-primary btn-lg">
-          Tell us about your project
+          {{ cta_final_button | default("Tell us about your project") }}
           <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>

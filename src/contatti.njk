@@ -285,27 +285,27 @@ hero_subtitle: "Raccontaci la tua idea. Ti risponderemo con una prima analisi en
   <!-- COSA SUCCEDE DOPO -->
   <section class="section bg-surface">
     <div class="container">
-      <h2 class="section-title reveal">Cosa succede dopo</h2>
+      <h2 class="section-title reveal">{{ process_title | default("Cosa succede dopo") }}</h2>
       <div class="contact-steps reveal-stagger">
         <div class="contact-step">
           <div class="contact-step-bubble">1</div>
           <div class="contact-step-body">
-            <h3>Raccontaci il tuo progetto</h3>
-            <p>Compila il form, scrivici una mail o chiamaci. Abbiamo bisogno di capire cosa vuoi realizzare, in che contesto e con quali aspettative.</p>
+            <h3>{{ step1_title | default("Raccontaci il tuo progetto") }}</h3>
+            <p>{{ step1_text | default("Compila il form, scrivici una mail o chiamaci. Abbiamo bisogno di capire cosa vuoi realizzare, in che contesto e con quali aspettative.") }}</p>
           </div>
         </div>
         <div class="contact-step">
           <div class="contact-step-bubble">2</div>
           <div class="contact-step-body">
-            <h3>Analizziamo la richiesta</h3>
-            <p>Valutiamo il contesto tecnico e normativo, le criticità e le opportunità. Se necessario, fissiamo un incontro senza impegno per approfondire.</p>
+            <h3>{{ step2_title | default("Analizziamo la richiesta") }}</h3>
+            <p>{{ step2_text | default("Valutiamo il contesto tecnico e normativo, le criticità e le opportunità. Se necessario, fissiamo un incontro senza impegno per approfondire.") }}</p>
           </div>
         </div>
         <div class="contact-step">
           <div class="contact-step-bubble">3</div>
           <div class="contact-step-body">
-            <h3>Ricevi piano e preventivo</h3>
-            <p>Ti presentiamo un percorso chiaro, con tempistiche, fasi operative e una stima trasparente dei costi. Senza sorprese, senza vincoli.</p>
+            <h3>{{ step3_title | default("Ricevi piano e preventivo") }}</h3>
+            <p>{{ step3_text | default("Ti presentiamo un percorso chiaro, con tempistiche, fasi operative e una stima trasparente dei costi. Senza sorprese, senza vincoli.") }}</p>
           </div>
         </div>
       </div>
@@ -318,8 +318,8 @@ hero_subtitle: "Raccontaci la tua idea. Ti risponderemo con una prima analisi en
     <div class="container">
       <div class="reveal">
         <div class="territorio-icon"><svg viewBox="0 0 100 100" stroke="currentColor" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M82.3 79.5L81.5 73.5L84.4 69.1L88.2 67.2L86.5 66.3L87.1 63.9L85.3 63.3L83.7 60.4L83.9 59.0L85.9 58.6L84.4 56.9L81.3 56.0L80.9 49.9L83.6 46.2L84.6 39.7L92.9 27.8L95.4 21.4L97.5 20.4L93.8 19.4L87.3 22.8L85.8 22.7L85.2 20.4L84.8 23.3L81.8 25.7L75.8 23.4L70.8 24.5L66.3 28.3L57.7 30.3L49.6 29.0L41.3 31.6L36.1 29.1L35.3 26.4L30.8 26.5L28.8 22.2L25.1 24.2L22.1 23.8L21.0 25.4L21.4 27.6L16.8 29.6L14.4 28.1L11.6 23.6L11.1 26.3L4.6 30.0L5.7 30.6L4.6 31.2L3.5 34.0L4.3 35.4L2.5 37.9L4.0 41.8L8.1 44.1L9.5 46.7L17.1 46.3L20.3 49.3L24.5 49.6L32.1 56.4L35.8 57.1L38.9 60.3L45.2 63.9L51.5 63.7L56.5 65.5L60.3 69.4L63.5 75.5L71.9 78.6L74.4 77.6L78.8 78.6L80.8 80.6L82.3 79.5Z"/></svg></div>
-        <h2>Radicati in Sicilia</h2>
-        <p>Operiamo sull'intero territorio siciliano con una conoscenza radicata delle specificità locali, del quadro normativo regionale e delle migliori pratiche costruttive dell'area mediterranea.</p>
+        <h2>{{ territorio_title | default(territorio.it.title) }}</h2>
+        <p>{{ territorio_text | default(territorio.it.text) }}</p>
       </div>
     </div>
   </section>

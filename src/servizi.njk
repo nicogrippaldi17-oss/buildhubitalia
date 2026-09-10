@@ -64,10 +64,10 @@ hero_subtitle: "Dalla progettazione alla realizzazione, un unico interlocutore p
   <section class="section bg-white">
     <div class="container text-center">
       <div class="reveal" style="max-width: 640px; margin: 0 auto;">
-        <h2 class="section-title" style="margin-bottom: 1rem;">Non sai qual è il servizio giusto per te?</h2>
-        <p style="color: rgba(10,10,10,0.55); font-size: 1.0625rem; line-height: 1.7; margin-bottom: 2rem;">Raccontaci il tuo progetto. Ti ascolteremo, analizzeremo le tue esigenze e ti guideremo verso la soluzione migliore, senza impegno.</p>
+        <h2 class="section-title" style="margin-bottom: 1rem;">{{ cta_final_title | default("Non sai qual è il servizio giusto per te?") }}</h2>
+        <p style="color: rgba(10,10,10,0.55); font-size: 1.0625rem; line-height: 1.7; margin-bottom: 2rem;">{{ cta_final_text | default("Raccontaci il tuo progetto. Ti ascolteremo, analizzeremo le tue esigenze e ti guideremo verso la soluzione migliore, senza impegno.") }}</p>
         <a href="contatti.html" class="btn btn-primary btn-lg">
-          Parlaci del tuo progetto
+          {{ cta_final_button | default("Parlaci del tuo progetto") }}
           <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>

@@ -27,110 +27,110 @@ collections:
         name: "index"
         file: "src/index.njk"
         fields:
-          - { label: "Titolo SEO", name: "title", widget: "string" }
-          - { label: "Meta Description", name: "description", widget: "text", required: false }
-          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
-          - { label: "Tagline Hero", name: "hero_tagline", widget: "text" }
-          - { label: "Testo Bottone Hero", name: "hero_cta", widget: "string" }
-          - { label: "Titolo Sezione Metodo", name: "method_title", widget: "string", default: "Il nostro metodo" }
-          - { label: "Titolo Sezione Servizi", name: "services_title", widget: "string", default: "I nostri servizi" }
+          - { label: "Titolo SEO", name: "title", widget: "string", description: "📍 Barra del browser e risultati Google. Massimo 60 caratteri." }
+          - { label: "Meta Description", name: "description", widget: "text", required: false, description: "📍 Descrizione nei risultati Google. Max 155-160 caratteri." }
+          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string", description: "📍 Testo grande sotto 'Build Hub' nella sezione hero (banner in alto)." }
+          - { label: "Tagline Hero", name: "hero_tagline", widget: "text", description: "📍 Frase descrittiva sotto il sottotitolo nella hero." }
+          - { label: "Testo Bottone Hero", name: "hero_cta", widget: "string", description: "📍 Testo del pulsante principale nella hero." }
+          - { label: "Titolo Sezione Metodo", name: "method_title", widget: "string", default: "Il nostro metodo", description: "📍 Titolo della sezione 'Il nostro metodo', sopra le 3 card." }
+          - { label: "Titolo Sezione Servizi", name: "services_title", widget: "string", default: "I nostri servizi", description: "📍 Titolo della sezione 'I nostri servizi', sopra la griglia dei servizi." }
           - label: "Valori"
             name: "valori"
             widget: "list"
             fields:
-              - { label: "Titolo", name: "title", widget: "string" }
-              - { label: "Testo", name: "text", widget: "text" }
-          - { label: "Label Stats Progetti", name: "stat_projects_label", widget: "string", default: "Progetti Completati" }
-          - { label: "Label Stats Anni", name: "stat_years_label", widget: "string", default: "Anni di Esperienza" }
-          - { label: "Label Stats Servizi", name: "stat_services_label", widget: "string", default: "Servizi Offerti" }
-          - { label: "Titolo CTA Finale", name: "cta_title", widget: "string" }
-          - { label: "Testo CTA Finale", name: "cta_text", widget: "text" }
-          - { label: "Bottone CTA", name: "cta_button", widget: "string" }
-          - { label: "Titolo Territorio", name: "territorio_title", widget: "string", default: "Radicati in Sicilia" }
-          - { label: "Testo Territorio", name: "territorio_text", widget: "text", default: "Operiamo sull'intero territorio siciliano con una conoscenza radicata delle specificità locali, del quadro normativo regionale e delle migliori pratiche costruttive dell'area mediterranea." }
+              - { label: "Titolo", name: "title", widget: "string", description: "📍 Titolo della card metodo (una per card, 3 totali)." }
+              - { label: "Testo", name: "text", widget: "text", description: "📍 Testo descrittivo sotto il titolo nella card metodo." }
+          - { label: "Label Stats Progetti", name: "stat_projects_label", widget: "string", default: "Progetti Completati", description: "📍 Label sotto il numero nella sezione statistiche (sfondo blu)." }
+          - { label: "Label Stats Anni", name: "stat_years_label", widget: "string", default: "Anni di Esperienza", description: "📍 Label sotto il numero anni nella sezione statistiche." }
+          - { label: "Label Stats Servizi", name: "stat_services_label", widget: "string", default: "Servizi Offerti", description: "📍 Label sotto il numero servizi nella sezione statistiche." }
+          - { label: "Titolo CTA Finale", name: "cta_title", widget: "string", description: "📍 Titolo della sezione CTA finale (sotto le stats, sopra il pulsante)." }
+          - { label: "Testo CTA Finale", name: "cta_text", widget: "text", description: "📍 Testo descrittivo sotto il titolo CTA finale." }
+          - { label: "Bottone CTA", name: "cta_button", widget: "string", description: "📍 Testo del pulsante CTA finale." }
+          - { label: "Titolo Territorio", name: "territorio_title", widget: "string", default: "Radicati in Sicilia", description: "📍 Titolo della sezione territorio (sfondo blu, in fondo alla pagina)." }
+          - { label: "Testo Territorio", name: "territorio_text", widget: "text", default: "Operiamo sull'intero territorio siciliano con una conoscenza radicata delle specificità locali, del quadro normativo regionale e delle migliori pratiche costruttive dell'area mediterranea.", description: "📍 Testo sotto il titolo nella sezione territorio." }
 
       - label: "Chi Siamo"
         name: "chi-siamo"
         file: "src/chi-siamo.njk"
         fields:
-          - { label: "Titolo SEO", name: "title", widget: "string" }
-          - { label: "Meta Description", name: "description", widget: "text", required: false }
-          - { label: "Titolo Hero", name: "hero_title", widget: "string" }
-          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
-          - { label: "Titolo Storia", name: "storia_title", widget: "string" }
-          - { label: "Paragrafo 1 Storia", name: "storia_p1", widget: "text" }
-          - { label: "Paragrafo 2 Storia", name: "storia_p2", widget: "text" }
-          - { label: "Titolo Approccio", name: "approccio_title", widget: "string" }
-          - { label: "Intro Approccio", name: "approccio_intro", widget: "text" }
+          - { label: "Titolo SEO", name: "title", widget: "string", description: "📍 Barra del browser e risultati Google. Massimo 60 caratteri." }
+          - { label: "Meta Description", name: "description", widget: "text", required: false, description: "📍 Descrizione nei risultati Google. Max 155-160 caratteri." }
+          - { label: "Titolo Hero", name: "hero_title", widget: "string", description: "📍 Titolo grande nella hero della pagina Chi Siamo." }
+          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string", description: "📍 Sottotitolo sotto il titolo nella hero." }
+          - { label: "Titolo Storia", name: "storia_title", widget: "string", description: "📍 Titolo della sezione 'Come nasce Build Hub'." }
+          - { label: "Paragrafo 1 Storia", name: "storia_p1", widget: "text", description: "📍 Primo paragrafo della sezione storia." }
+          - { label: "Paragrafo 2 Storia", name: "storia_p2", widget: "text", description: "📍 Secondo paragrafo della sezione storia." }
+          - { label: "Titolo Approccio", name: "approccio_title", widget: "string", description: "📍 Titolo della sezione 'Il Nostro Approccio'." }
+          - { label: "Intro Approccio", name: "approccio_intro", widget: "text", description: "📍 Frase introduttiva sotto il titolo approccio." }
           - label: "Punti Approccio"
             name: "approccio_items"
             widget: "list"
-            field: { label: "Testo", name: "text", widget: "string" }
-          - { label: "Titolo Visione", name: "visione_title", widget: "string" }
-          - { label: "Paragrafo 1 Visione", name: "visione_p1", widget: "text" }
-          - { label: "Paragrafo 2 Visione", name: "visione_p2", widget: "text" }
-          - { label: "Titolo Missione", name: "missione_title", widget: "string" }
-          - { label: "Paragrafo 1 Missione", name: "missione_p1", widget: "text" }
-          - { label: "Paragrafo 2 Missione", name: "missione_p2", widget: "text" }
-          - { label: "Titolo Valori", name: "valori_title", widget: "string" }
+            field: { label: "Testo", name: "text", widget: "string", description: "📍 Ogni bullet point della lista approccio (5 voci)." }
+          - { label: "Titolo Visione", name: "visione_title", widget: "string", description: "📍 Titolo della sezione Visione." }
+          - { label: "Paragrafo 1 Visione", name: "visione_p1", widget: "text", description: "📍 Primo paragrafo della sezione Visione." }
+          - { label: "Paragrafo 2 Visione", name: "visione_p2", widget: "text", description: "📍 Secondo paragrafo della sezione Visione." }
+          - { label: "Titolo Missione", name: "missione_title", widget: "string", description: "📍 Titolo della sezione Missione." }
+          - { label: "Paragrafo 1 Missione", name: "missione_p1", widget: "text", description: "📍 Primo paragrafo della sezione Missione." }
+          - { label: "Paragrafo 2 Missione", name: "missione_p2", widget: "text", description: "📍 Secondo paragrafo della sezione Missione." }
+          - { label: "Titolo Valori", name: "valori_title", widget: "string", description: "📍 Titolo sopra le 3 card valori." }
           - label: "Card Valori"
             name: "valori_cards"
             widget: "list"
             fields:
-              - { label: "Titolo", name: "title", widget: "string" }
-              - { label: "Testo", name: "text", widget: "text" }
-          - { label: "Titolo CTA", name: "cta_title", widget: "string" }
-          - { label: "Testo CTA", name: "cta_text", widget: "text" }
-          - { label: "Bottone CTA", name: "cta_button", widget: "string" }
-          - { label: "Link CTA", name: "cta_link", widget: "string" }
-          - { label: "Titolo Territorio", name: "territorio_title", widget: "string" }
-          - { label: "Testo Territorio", name: "territorio_text", widget: "text" }
+              - { label: "Titolo", name: "title", widget: "string", description: "📍 Titolo di ogni card valore (una per card, 3 totali)." }
+              - { label: "Testo", name: "text", widget: "text", description: "📍 Testo descrittivo sotto il titolo nella card valore." }
+          - { label: "Titolo CTA", name: "cta_title", widget: "string", description: "📍 Titolo della sezione CTA finale pagina Chi Siamo." }
+          - { label: "Testo CTA", name: "cta_text", widget: "text", description: "📍 Testo sotto il titolo CTA finale." }
+          - { label: "Bottone CTA", name: "cta_button", widget: "string", description: "📍 Testo del pulsante CTA finale." }
+          - { label: "Link CTA", name: "cta_link", widget: "string", description: "📍 URL dove punta il pulsante CTA (es. contatti.html)." }
+          - { label: "Titolo Territorio", name: "territorio_title", widget: "string", description: "📍 Titolo della sezione territorio (sfondo blu, in fondo)." }
+          - { label: "Testo Territorio", name: "territorio_text", widget: "text", description: "📍 Testo sotto il titolo nella sezione territorio." }
 
       - label: "Servizi"
         name: "servizi"
         file: "src/servizi.njk"
         fields:
-          - { label: "Titolo SEO", name: "title", widget: "string" }
-          - { label: "Meta Description", name: "description", widget: "text", required: false }
-          - { label: "Titolo Hero", name: "hero_title", widget: "string" }
-          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
-          - { label: "Titolo CTA Finale", name: "cta_final_title", widget: "string", default: "Non sai qual è il servizio giusto per te?" }
-          - { label: "Testo CTA Finale", name: "cta_final_text", widget: "text", default: "Raccontaci il tuo progetto. Ti ascolteremo, analizzeremo le tue esigenze e ti guideremo verso la soluzione migliore, senza impegno." }
-          - { label: "Bottone CTA Finale", name: "cta_final_button", widget: "string", default: "Parlaci del tuo progetto" }
+          - { label: "Titolo SEO", name: "title", widget: "string", description: "📍 Barra del browser e risultati Google. Massimo 60 caratteri." }
+          - { label: "Meta Description", name: "description", widget: "text", required: false, description: "📍 Descrizione nei risultati Google. Max 155-160 caratteri." }
+          - { label: "Titolo Hero", name: "hero_title", widget: "string", description: "📍 Titolo grande nella hero della pagina Servizi." }
+          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string", description: "📍 Sottotitolo sotto il titolo nella hero." }
+          - { label: "Titolo CTA Finale", name: "cta_final_title", widget: "string", default: "Non sai qual è il servizio giusto per te?", description: "📍 Titolo del CTA in fondo alla pagina, dopo tutti i servizi." }
+          - { label: "Testo CTA Finale", name: "cta_final_text", widget: "text", default: "Raccontaci il tuo progetto. Ti ascolteremo, analizzeremo le tue esigenze e ti guideremo verso la soluzione migliore, senza impegno.", description: "📍 Testo sotto il titolo CTA finale." }
+          - { label: "Bottone CTA Finale", name: "cta_final_button", widget: "string", default: "Parlaci del tuo progetto", description: "📍 Testo del pulsante CTA finale." }
 
       - label: "Progetti"
         name: "progetti"
         file: "src/progetti.njk"
         fields:
-          - { label: "Titolo SEO", name: "title", widget: "string" }
-          - { label: "Meta Description", name: "description", widget: "text", required: false }
-          - { label: "Titolo Hero", name: "hero_title", widget: "string" }
-          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
+          - { label: "Titolo SEO", name: "title", widget: "string", description: "📍 Barra del browser e risultati Google. Massimo 60 caratteri." }
+          - { label: "Meta Description", name: "description", widget: "text", required: false, description: "📍 Descrizione nei risultati Google. Max 155-160 caratteri." }
+          - { label: "Titolo Hero", name: "hero_title", widget: "string", description: "📍 Titolo grande nella hero della pagina Progetti." }
+          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string", description: "📍 Sottotitolo sotto il titolo nella hero." }
 
       - label: "Contatti"
         name: "contatti"
         file: "src/contatti.njk"
         fields:
-          - { label: "Titolo SEO", name: "title", widget: "string" }
-          - { label: "Meta Description", name: "description", widget: "text", required: false }
-          - { label: "Titolo Hero", name: "hero_title", widget: "string" }
-          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string" }
-          - { label: "Titolo Cosa Succede", name: "process_title", widget: "string", default: "Cosa succede dopo" }
-          - { label: "Titolo Step 1", name: "step1_title", widget: "string", default: "Raccontaci il tuo progetto" }
-          - { label: "Testo Step 1", name: "step1_text", widget: "text", default: "Compila il form, scrivici una mail o chiamaci. Abbiamo bisogno di capire cosa vuoi realizzare, in che contesto e con quali aspettative." }
-          - { label: "Titolo Step 2", name: "step2_title", widget: "string", default: "Analizziamo la richiesta" }
-          - { label: "Testo Step 2", name: "step2_text", widget: "text", default: "Valutiamo il contesto tecnico e normativo, le criticità e le opportunità. Se necessario, fissiamo un incontro senza impegno per approfondire." }
-          - { label: "Titolo Step 3", name: "step3_title", widget: "string", default: "Ricevi piano e preventivo" }
-          - { label: "Testo Step 3", name: "step3_text", widget: "text", default: "Ti presentiamo un percorso chiaro, con tempistiche, fasi operative e una stima trasparente dei costi. Senza sorprese, senza vincoli." }
+          - { label: "Titolo SEO", name: "title", widget: "string", description: "📍 Barra del browser e risultati Google. Massimo 60 caratteri." }
+          - { label: "Meta Description", name: "description", widget: "text", required: false, description: "📍 Descrizione nei risultati Google. Max 155-160 caratteri." }
+          - { label: "Titolo Hero", name: "hero_title", widget: "string", description: "📍 Titolo grande nella hero della pagina Contatti." }
+          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string", description: "📍 Sottotitolo sotto il titolo nella hero." }
+          - { label: "Titolo Cosa Succede", name: "process_title", widget: "string", default: "Cosa succede dopo", description: "📍 Titolo della sezione 'Cosa succede dopo' (sotto la mappa)." }
+          - { label: "Titolo Step 1", name: "step1_title", widget: "string", default: "Raccontaci il tuo progetto", description: "📍 Titolo dello step 1 nella sezione 'Cosa succede dopo'." }
+          - { label: "Testo Step 1", name: "step1_text", widget: "text", default: "Compila il form, scrivici una mail o chiamaci. Abbiamo bisogno di capire cosa vuoi realizzare, in che contesto e con quali aspettative.", description: "📍 Testo descrittivo sotto il titolo dello step 1." }
+          - { label: "Titolo Step 2", name: "step2_title", widget: "string", default: "Analizziamo la richiesta", description: "📍 Titolo dello step 2 nella sezione 'Cosa succede dopo'." }
+          - { label: "Testo Step 2", name: "step2_text", widget: "text", default: "Valutiamo il contesto tecnico e normativo, le criticità e le opportunità. Se necessario, fissiamo un incontro senza impegno per approfondire.", description: "📍 Testo descrittivo sotto il titolo dello step 2." }
+          - { label: "Titolo Step 3", name: "step3_title", widget: "string", default: "Ricevi piano e preventivo", description: "📍 Titolo dello step 3 nella sezione 'Cosa succede dopo'." }
+          - { label: "Testo Step 3", name: "step3_text", widget: "text", default: "Ti presentiamo un percorso chiaro, con tempistiche, fasi operative e una stima trasparente dei costi. Senza sorprese, senza vincoli.", description: "📍 Testo descrittivo sotto il titolo dello step 3." }
 
       - label: "Contatti Footer"
         name: "contatti-footer"
         file: "src/_data/contact.json"
         fields:
-          - { label: "Indirizzo", name: "address", widget: "string" }
-          - { label: "Telefono", name: "phone", widget: "string" }
-          - { label: "Telefono 2", name: "phone2", widget: "string", required: false }
-          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Indirizzo", name: "address", widget: "string", description: "📍 Indirizzo nel footer di ogni pagina." }
+          - { label: "Telefono", name: "phone", widget: "string", description: "📍 Numero di telefono principale nel footer." }
+          - { label: "Telefono 2", name: "phone2", widget: "string", required: false, description: "📍 Numero di telefono secondario nel footer (opzionale)." }
+          - { label: "Email", name: "email", widget: "string", description: "📍 Email nel footer di ogni pagina." }
 
   - name: "pages_en"
     label: "Pages EN"
@@ -143,101 +143,101 @@ collections:
         name: "index"
         file: "src/en/index.njk"
         fields:
-          - { label: "SEO Title", name: "title", widget: "string" }
-          - { label: "Meta Description", name: "description", widget: "text", required: false }
-          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
-          - { label: "Hero Tagline", name: "hero_tagline", widget: "text" }
-          - { label: "Hero Button Text", name: "hero_cta", widget: "string" }
-          - { label: "Method Section Title", name: "method_title", widget: "string", default: "Our method" }
-          - { label: "Services Section Title", name: "services_title", widget: "string", default: "Our services" }
+          - { label: "SEO Title", name: "title", widget: "string", description: "📍 Browser tab and Google results. Max 60 characters." }
+          - { label: "Meta Description", name: "description", widget: "text", required: false, description: "📍 Google search snippet description. Max 155-160 characters." }
+          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string", description: "📍 Large text below 'Build Hub' in the hero banner." }
+          - { label: "Hero Tagline", name: "hero_tagline", widget: "text", description: "📍 Descriptive line below the subtitle in the hero." }
+          - { label: "Hero Button Text", name: "hero_cta", widget: "string", description: "📍 Text on the main button in the hero." }
+          - { label: "Method Section Title", name: "method_title", widget: "string", default: "Our method", description: "📍 Title of the 'Our method' section, above the 3 value cards." }
+          - { label: "Services Section Title", name: "services_title", widget: "string", default: "Our services", description: "📍 Title of the 'Our services' section, above the service grid." }
           - label: "Values"
             name: "valori"
             widget: "list"
             fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Text", name: "text", widget: "text" }
-          - { label: "Stats Label Projects", name: "stat_projects_label", widget: "string", default: "Completed Projects" }
-          - { label: "Stats Label Years", name: "stat_years_label", widget: "string", default: "Years of Experience" }
-          - { label: "Stats Label Services", name: "stat_services_label", widget: "string", default: "Services Offered" }
-          - { label: "CTA Title", name: "cta_title", widget: "string" }
-          - { label: "CTA Text", name: "cta_text", widget: "text" }
-          - { label: "CTA Button", name: "cta_button", widget: "string" }
-          - { label: "Territory Title", name: "territorio_title", widget: "string", default: "Rooted in Sicily" }
-          - { label: "Territory Text", name: "territorio_text", widget: "text", default: "We operate throughout Sicily with deep-rooted knowledge of local specificities, the regional regulatory framework and the best construction practices of the Mediterranean area." }
+              - { label: "Title", name: "title", widget: "string", description: "📍 Title of each method card (one per card, 3 total)." }
+              - { label: "Text", name: "text", widget: "text", description: "📍 Description text inside each method card." }
+          - { label: "Stats Label Projects", name: "stat_projects_label", widget: "string", default: "Completed Projects", description: "📍 Label below the number in the stats section (blue background)." }
+          - { label: "Stats Label Years", name: "stat_years_label", widget: "string", default: "Years of Experience", description: "📍 Label below the years number in the stats section." }
+          - { label: "Stats Label Services", name: "stat_services_label", widget: "string", default: "Services Offered", description: "📍 Label below the services number in the stats section." }
+          - { label: "CTA Title", name: "cta_title", widget: "string", description: "📍 Title of the final CTA section (below stats, above button)." }
+          - { label: "CTA Text", name: "cta_text", widget: "text", description: "📍 Description text below the CTA title." }
+          - { label: "CTA Button", name: "cta_button", widget: "string", description: "📍 Text on the final CTA button." }
+          - { label: "Territory Title", name: "territorio_title", widget: "string", default: "Rooted in Sicily", description: "📍 Title of the territory section (blue background, bottom of page)." }
+          - { label: "Territory Text", name: "territorio_text", widget: "text", default: "We operate throughout Sicily with deep-rooted knowledge of local specificities, the regional regulatory framework and the best construction practices of the Mediterranean area.", description: "📍 Text below the title in the territory section." }
 
       - label: "About Us"
         name: "about"
         file: "src/en/about.njk"
         fields:
-          - { label: "SEO Title", name: "title", widget: "string" }
-          - { label: "Meta Description", name: "description", widget: "text", required: false }
-          - { label: "Hero Title", name: "hero_title", widget: "string" }
-          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
-          - { label: "Story Title", name: "storia_title", widget: "string" }
-          - { label: "Story Paragraph 1", name: "storia_p1", widget: "text" }
-          - { label: "Story Paragraph 2", name: "storia_p2", widget: "text" }
-          - { label: "Approach Title", name: "approccio_title", widget: "string" }
-          - { label: "Approach Intro", name: "approccio_intro", widget: "text" }
+          - { label: "SEO Title", name: "title", widget: "string", description: "📍 Browser tab and Google results. Max 60 characters." }
+          - { label: "Meta Description", name: "description", widget: "text", required: false, description: "📍 Google search snippet description. Max 155-160 characters." }
+          - { label: "Hero Title", name: "hero_title", widget: "string", description: "📍 Large title in the About Us hero section." }
+          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string", description: "📍 Subtitle below the title in the hero." }
+          - { label: "Story Title", name: "storia_title", widget: "string", description: "📍 Title of the 'How Build Hub was born' section." }
+          - { label: "Story Paragraph 1", name: "storia_p1", widget: "text", description: "📍 First paragraph of the story section." }
+          - { label: "Story Paragraph 2", name: "storia_p2", widget: "text", description: "📍 Second paragraph of the story section." }
+          - { label: "Approach Title", name: "approccio_title", widget: "string", description: "📍 Title of the 'Our Approach' section." }
+          - { label: "Approach Intro", name: "approccio_intro", widget: "text", description: "📍 Introductory line below the approach title." }
           - label: "Approach Items"
             name: "approccio_items"
             widget: "list"
-            field: { label: "Text", name: "text", widget: "string" }
-          - { label: "Vision Title", name: "visione_title", widget: "string" }
-          - { label: "Vision Paragraph 1", name: "visione_p1", widget: "text" }
-          - { label: "Vision Paragraph 2", name: "visione_p2", widget: "text" }
-          - { label: "Mission Title", name: "missione_title", widget: "string" }
-          - { label: "Mission Paragraph 1", name: "missione_p1", widget: "text" }
-          - { label: "Mission Paragraph 2", name: "missione_p2", widget: "text" }
-          - { label: "Values Title", name: "valori_title", widget: "string" }
+            field: { label: "Text", name: "text", widget: "string", description: "📍 Each bullet point in the approach list (5 items)." }
+          - { label: "Vision Title", name: "visione_title", widget: "string", description: "📍 Title of the Vision section." }
+          - { label: "Vision Paragraph 1", name: "visione_p1", widget: "text", description: "📍 First paragraph of the Vision section." }
+          - { label: "Vision Paragraph 2", name: "visione_p2", widget: "text", description: "📍 Second paragraph of the Vision section." }
+          - { label: "Mission Title", name: "missione_title", widget: "string", description: "📍 Title of the Mission section." }
+          - { label: "Mission Paragraph 1", name: "missione_p1", widget: "text", description: "📍 First paragraph of the Mission section." }
+          - { label: "Mission Paragraph 2", name: "missione_p2", widget: "text", description: "📍 Second paragraph of the Mission section." }
+          - { label: "Values Title", name: "valori_title", widget: "string", description: "📍 Title above the 3 value cards." }
           - label: "Value Cards"
             name: "valori_cards"
             widget: "list"
             fields:
-              - { label: "Title", name: "title", widget: "string" }
-              - { label: "Text", name: "text", widget: "text" }
-          - { label: "CTA Title", name: "cta_title", widget: "string" }
-          - { label: "CTA Text", name: "cta_text", widget: "text" }
-          - { label: "CTA Button", name: "cta_button", widget: "string" }
-          - { label: "CTA Link", name: "cta_link", widget: "string" }
-          - { label: "Territory Title", name: "territorio_title", widget: "string" }
-          - { label: "Territory Text", name: "territorio_text", widget: "text" }
+              - { label: "Title", name: "title", widget: "string", description: "📍 Title of each value card (one per card, 3 total)." }
+              - { label: "Text", name: "text", widget: "text", description: "📍 Description text inside each value card." }
+          - { label: "CTA Title", name: "cta_title", widget: "string", description: "📍 Title of the final CTA section on this page." }
+          - { label: "CTA Text", name: "cta_text", widget: "text", description: "📍 Text below the CTA title." }
+          - { label: "CTA Button", name: "cta_button", widget: "string", description: "📍 Text on the CTA button." }
+          - { label: "CTA Link", name: "cta_link", widget: "string", description: "📍 URL the CTA button links to (e.g. contact.html)." }
+          - { label: "Territory Title", name: "territorio_title", widget: "string", description: "📍 Title of the territory section (blue background, bottom)." }
+          - { label: "Territory Text", name: "territorio_text", widget: "text", description: "📍 Text below the title in the territory section." }
 
       - label: "Services"
         name: "services"
         file: "src/en/services.njk"
         fields:
-          - { label: "SEO Title", name: "title", widget: "string" }
-          - { label: "Meta Description", name: "description", widget: "text", required: false }
-          - { label: "Hero Title", name: "hero_title", widget: "string" }
-          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
-          - { label: "CTA Final Title", name: "cta_final_title", widget: "string", default: "Not sure which service is right for you?" }
-          - { label: "CTA Final Text", name: "cta_final_text", widget: "text", default: "Tell us about your project. We will listen, analyse your needs and guide you towards the best solution, with no obligation." }
-          - { label: "CTA Final Button", name: "cta_final_button", widget: "string", default: "Tell us about your project" }
+          - { label: "SEO Title", name: "title", widget: "string", description: "📍 Browser tab and Google results. Max 60 characters." }
+          - { label: "Meta Description", name: "description", widget: "text", required: false, description: "📍 Google search snippet description. Max 155-160 characters." }
+          - { label: "Hero Title", name: "hero_title", widget: "string", description: "📍 Large title in the Services hero section." }
+          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string", description: "📍 Subtitle below the title in the hero." }
+          - { label: "CTA Final Title", name: "cta_final_title", widget: "string", default: "Not sure which service is right for you?", description: "📍 Title of the CTA at the bottom of the page, after all services." }
+          - { label: "CTA Final Text", name: "cta_final_text", widget: "text", default: "Tell us about your project. We will listen, analyse your needs and guide you towards the best solution, with no obligation.", description: "📍 Text below the final CTA title." }
+          - { label: "CTA Final Button", name: "cta_final_button", widget: "string", default: "Tell us about your project", description: "📍 Text on the final CTA button." }
 
       - label: "Projects"
         name: "projects"
         file: "src/en/projects.njk"
         fields:
-          - { label: "SEO Title", name: "title", widget: "string" }
-          - { label: "Meta Description", name: "description", widget: "text", required: false }
-          - { label: "Hero Title", name: "hero_title", widget: "string" }
-          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
+          - { label: "SEO Title", name: "title", widget: "string", description: "📍 Browser tab and Google results. Max 60 characters." }
+          - { label: "Meta Description", name: "description", widget: "text", required: false, description: "📍 Google search snippet description. Max 155-160 characters." }
+          - { label: "Hero Title", name: "hero_title", widget: "string", description: "📍 Large title in the Projects hero section." }
+          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string", description: "📍 Subtitle below the title in the hero." }
 
       - label: "Contact"
         name: "contact"
         file: "src/en/contact.njk"
         fields:
-          - { label: "SEO Title", name: "title", widget: "string" }
-          - { label: "Meta Description", name: "description", widget: "text", required: false }
-          - { label: "Hero Title", name: "hero_title", widget: "string" }
-          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string" }
-          - { label: "Process Title", name: "process_title", widget: "string", default: "What happens next" }
-          - { label: "Step 1 Title", name: "step1_title", widget: "string", default: "Tell us about your project" }
-          - { label: "Step 1 Text", name: "step1_text", widget: "text", default: "Fill in the form, send us an email or give us a call. We need to understand what you want to achieve, in what context and with what expectations." }
-          - { label: "Step 2 Title", name: "step2_title", widget: "string", default: "We analyse your request" }
-          - { label: "Step 2 Text", name: "step2_text", widget: "text", default: "We assess the technical and regulatory context, the challenges and the opportunities. If needed, we schedule a no-obligation meeting to go deeper into the details." }
-          - { label: "Step 3 Title", name: "step3_title", widget: "string", default: "Receive plan and quote" }
-          - { label: "Step 3 Text", name: "step3_text", widget: "text", default: "We present you with a clear roadmap, complete with timelines, operational phases and a transparent cost estimate. No surprises, no strings attached." }
+          - { label: "SEO Title", name: "title", widget: "string", description: "📍 Browser tab and Google results. Max 60 characters." }
+          - { label: "Meta Description", name: "description", widget: "text", required: false, description: "📍 Google search snippet description. Max 155-160 characters." }
+          - { label: "Hero Title", name: "hero_title", widget: "string", description: "📍 Large title in the Contact hero section." }
+          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string", description: "📍 Subtitle below the title in the hero." }
+          - { label: "Process Title", name: "process_title", widget: "string", default: "What happens next", description: "📍 Title of the 'What happens next' section (below the map)." }
+          - { label: "Step 1 Title", name: "step1_title", widget: "string", default: "Tell us about your project", description: "📍 Title of step 1 in the 'What happens next' section." }
+          - { label: "Step 1 Text", name: "step1_text", widget: "text", default: "Fill in the form, send us an email or give us a call. We need to understand what you want to achieve, in what context and with what expectations.", description: "📍 Description text below the step 1 title." }
+          - { label: "Step 2 Title", name: "step2_title", widget: "string", default: "We analyse your request", description: "📍 Title of step 2 in the 'What happens next' section." }
+          - { label: "Step 2 Text", name: "step2_text", widget: "text", default: "We assess the technical and regulatory context, the challenges and the opportunities. If needed, we schedule a no-obligation meeting to go deeper into the details.", description: "📍 Description text below the step 2 title." }
+          - { label: "Step 3 Title", name: "step3_title", widget: "string", default: "Receive plan and quote", description: "📍 Title of step 3 in the 'What happens next' section." }
+          - { label: "Step 3 Text", name: "step3_text", widget: "text", default: "We present you with a clear roadmap, complete with timelines, operational phases and a transparent cost estimate. No surprises, no strings attached.", description: "📍 Description text below the step 3 title." }
 
   - name: "services_it"
     label: "Servizi IT"
@@ -247,21 +247,22 @@ collections:
     delete: true
     extension: "md"
     fields:
-      - { label: "Titolo", name: "title", widget: "string" }
-      - { label: "Descrizione", name: "description", widget: "text" }
+      - { label: "Titolo", name: "title", widget: "string", description: "📍 Nome del servizio. Appare come titolo h2 nella pagina servizi." }
+      - { label: "Descrizione", name: "description", widget: "text", description: "📍 Descrizione del servizio. Appare sotto il titolo nella pagina servizi." }
       - label: "Icona"
         name: "icon"
         widget: "select"
         options: ["management", "permits", "supervision", "safety", "economics", "energy", "consulting", "network"]
         default: "management"
-      - { label: "Slug (ID per ancoraggio)", name: "slug", widget: "string" }
+        description: "📍 Icona del servizio. Seleziona dalla lista."
+      - { label: "Slug (ID per ancoraggio)", name: "slug", widget: "string", description: "📍 ID URL per il collegamento (es. 'project-management'). Non cambiare se il servizio è già pubblicato." }
       - label: "Caratteristiche"
         name: "features"
         widget: "list"
         fields:
-          - { label: "Voce", name: "text", widget: "string" }
-          - { label: "Tooltip (spiegazione al ?)", name: "tip", widget: "string", required: false }
-      - { label: "Ordine", name: "order", widget: "number", default: 1 }
+          - { label: "Voce", name: "text", widget: "string", description: "📍 Voce della lista caratteristiche del servizio." }
+          - { label: "Tooltip (spiegazione al ?)", name: "tip", widget: "string", required: false, description: "📍 Testo del tooltip. Appare quando il utente clicca sul ? accanto alla caratteristica." }
+      - { label: "Ordine", name: "order", widget: "number", default: 1, description: "📍 Ordine di visualizzazione. Numero più basso = visualizzato prima." }
 
   - name: "services_en"
     label: "Services EN"
@@ -271,21 +272,22 @@ collections:
     delete: true
     extension: "md"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Title", name: "title", widget: "string", description: "📍 Service name. Appears as h2 title in the services page." }
+      - { label: "Description", name: "description", widget: "text", description: "📍 Service description. Appears below the title in the services page." }
       - label: "Icon"
         name: "icon"
         widget: "select"
         options: ["management", "permits", "supervision", "safety", "economics", "energy", "consulting", "network"]
         default: "management"
-      - { label: "Slug (anchor ID)", name: "slug", widget: "string" }
+        description: "📍 Service icon. Select from the list."
+      - { label: "Slug (anchor ID)", name: "slug", widget: "string", description: "📍 URL anchor ID (e.g. 'project-management'). Do not change if the service is already published." }
       - label: "Features"
         name: "features"
         widget: "list"
         fields:
-          - { label: "Item", name: "text", widget: "string" }
-          - { label: "Tooltip (? explanation)", name: "tip", widget: "string", required: false }
-      - { label: "Order", name: "order", widget: "number", default: 1 }
+          - { label: "Item", name: "text", widget: "string", description: "📍 Feature list item for this service." }
+          - { label: "Tooltip (? explanation)", name: "tip", widget: "string", required: false, description: "📍 Tooltip text. Appears when the user clicks the ? next to the feature." }
+      - { label: "Order", name: "order", widget: "number", default: 1, description: "📍 Display order. Lower number = shown first." }
 
   - name: "projects_it"
     label: "Progetti IT"
@@ -295,12 +297,12 @@ collections:
     delete: true
     extension: "md"
     fields:
-      - { label: "Titolo", name: "title", widget: "string" }
-      - { label: "Descrizione", name: "description", widget: "text" }
-      - { label: "Immagine", name: "image", widget: "image", required: false }
-      - { label: "Categoria", name: "category", widget: "string" }
-      - { label: "Pubblicato", name: "published", widget: "boolean", default: true, required: false }
-      - { label: "Ordine", name: "order", widget: "number", default: 1 }
+      - { label: "Titolo", name: "title", widget: "string", description: "📍 Nome del progetto. Appare come titolo nella card progetto." }
+      - { label: "Descrizione", name: "description", widget: "text", description: "📍 Breve descrizione del progetto. Appare sotto il titolo nella card." }
+      - { label: "Immagine", name: "image", widget: "image", required: false, description: "📍 Immagine del progetto (opzionale). Appare nella card." }
+      - { label: "Categoria", name: "category", widget: "string", description: "📍 Categoria del progetto (es. 'Residenziale', 'Commerciale'). Appare come tag nella card." }
+      - { label: "Pubblicato", name: "published", widget: "boolean", default: true, required: false, description: "📍 Se attivo, il progetto è visibile nel sito. Disattiva per nasconderlo." }
+      - { label: "Ordine", name: "order", widget: "number", default: 1, description: "📍 Ordine di visualizzazione. Numero più basso = visualizzato prima." }
 
   - name: "projects_en"
     label: "Projects EN"
@@ -310,9 +312,9 @@ collections:
     delete: true
     extension: "md"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Image", name: "image", widget: "image", required: false }
-      - { label: "Category", name: "category", widget: "string" }
-      - { label: "Published", name: "published", widget: "boolean", default: true, required: false }
-      - { label: "Order", name: "order", widget: "number", default: 1 }
+      - { label: "Title", name: "title", widget: "string", description: "📍 Project name. Appears as title in the project card." }
+      - { label: "Description", name: "description", widget: "text", description: "📍 Short project description. Appears below the title in the card." }
+      - { label: "Image", name: "image", widget: "image", required: false, description: "📍 Project image (optional). Appears in the card." }
+      - { label: "Category", name: "category", widget: "string", description: "📍 Project category (e.g. 'Residential', 'Commercial'). Appears as tag in the card." }
+      - { label: "Published", name: "published", widget: "boolean", default: true, required: false, description: "📍 When active, the project is visible on the site. Disable to hide it." }
+      - { label: "Order", name: "order", widget: "number", default: 1, description: "📍 Display order. Lower number = shown first." }

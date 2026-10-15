@@ -2,47 +2,49 @@
 
 ## Progetto
 Sito vetrina statico bilingue (IT/EN) per Build Hub, azienda di Project Management in Sicilia.
+Sito live: **https://buildhubitalia.com**
 
 ## Stack
-- **Static site generator:** Eleventy (11ty)
-- **CMS:** Decap CMS (per modifiche del cliente)
-- **Hosting:** Netlify (deploy automatico da GitHub)
-- **Build:** `npx @11ty/eleventy`
+- **Static site generator:** Eleventy (11ty) v3 — `npm run build`
+- **Template:** Nunjucks
+- **Hosting:** **Cloudflare Pages** (progetto `buildhubitalia`)
+- **Deploy:** **GitHub Actions** — ogni push in `main` esegue build + `wrangler pages deploy`
+- **CMS:** **Decap CMS** — pannello in `/gestione` (gate password + backend `proxy`)
+- **Funzioni serverless:** Cloudflare Pages Functions (`functions/`)
+- **Email:** Resend (invio form) + Cloudflare Email Routing (`info@buildhubitalia.com` → Gmail)
 - **Output:** `_site/`
 
 ## Struttura directory
 ```
 buildhub-site/
 ├── src/                    # Sorgente (input Eleventy)
-│   ├── _data/
-│   │   └── site.json       # Dati globali (URL, anno)
-│   ├── _includes/          # Template Nunjucks
-│   │   ├── base.njk        # Layout principale (navbar + footer + SEO + JSON-LD)
-│   │   └── icons.njk       # Macro icone servizi
-│   ├── index.njk           # Homepage IT (frontmatter con hero, valori, stats, cta)
-│   ├── chi-siamo.njk       # About IT
+│   ├── _data/              # site.json, contact.json, territorio.json
+│   ├── _includes/          # base.njk (layout), icons.njk (macro icone)
+│   ├── gestione/           # Pannello CMS cliente: index.html (gate password) + config.yml (backend proxy)
+│   ├── admin/              # Pannello CMS alternativo: index.html + config.yml (backend github/OAuth)
+│   ├── index.njk           # Homepage IT (frontmatter editabile)
+│   ├── chi-siamo.njk       # Chi Siamo IT
 │   ├── servizi.njk         # Servizi IT (itera su collections.services_it)
 │   ├── progetti.njk        # Progetti IT (itera su collections.projects_it)
-│   ├── contatti.njk        # Contatti IT
-│   ├── en/
-│   │   ├── index.njk       # Homepage EN
-│   │   ├── about.njk
-│   │   ├── services.njk
-│   │   ├── projects.njk
-│   │   └── contact.njk
-│   ├── services_it/        # 4 file .md — servizi IT editabili (collezione)
-│   ├── services_en/        # 4 file .md — servizi EN editabili (collezione)
-│   ├── projects_it/        # Progetti IT (vuoto, cliente aggiunge via CMS)
-│   ├── projects_en/        # Progetti EN (vuoto, cliente aggiunge via CMS)
-│   ├── admin/
-│   │   ├── index.html      # Pannello Decap CMS
-│   │   └── config.yml      # Configurazione CMS
+│   ├── contatti.njk        # Contatti IT (mappa + routing + form)
+│   ├── privacy.njk / cookie.njk / sitemap.njk / robots.njk / 404.njk
+│   ├── en/                 # index, about, services, projects, contact, privacy, cookie
+│   ├── services_it/        # 8 file .md — servizi IT (collezione CMS)
+│   ├── services_en/        # 8 file .md — servizi EN (collezione CMS)
+│   ├── projects_it/        # Progetti IT (creabili via CMS)
+│   ├── projects_en/        # Progetti EN (creabili via CMS)
 │   ├── css/style.css
 │   ├── js/main.js
-│   ├── img/logo.png
-│   └── favicon.svg
-├── .eleventy.js            # Config Eleventy
-├── netlify.toml            # Config deploy Netlify
+│   └── img/
+├── functions/              # Cloudflare Pages Functions
+│   ├── _middleware.js      # Redirect host non-canonici → buildhubitalia.com
+│   ├── contact.js          # POST /contact → email via Resend
+│   ├── proxy.js            # Backend CMS (GitHub API via GITHUB_PAT)
+│   └── api/auth.js         # OAuth GitHub per /admin
+├── .github/workflows/deploy.yml
+├── .eleventy.js            # Config Eleventy + minificazione HTML
+├── minify.js               # Minifica post-build CSS/JS (csso + terser)
+├── wrangler.toml           # Config Cloudflare Pages
 ├── package.json
 └── .gitignore
 ```
@@ -51,59 +53,69 @@ buildhub-site/
 - `npm run build` — genera il sito in `_site/` (+ minifica CSS/JS)
 - `npm run serve` — server locale con live-reload su `http://localhost:8080`
 
-## Per il deploy
-1. Push su GitHub
-2. Connettere a Netlify (root: `buildhub-site/`, build: `npm run build`, publish: `_site`)
-3. Abilitare Netlify Identity + Git Gateway
-4. Invitare il cliente come utente
+Nota ambiente locale (macOS): `npx @11ty/eleventy` può fallire; usare `./node_modules/.bin/eleventy`.
+Il build completo: `./node_modules/.bin/eleventy && node minify.js`.
 
-## Per il cliente (modifiche via admin)
-1. Aprire `buildhubitalia.com/admin`
-2. Login via email (link magico)
-3. Modificare testi/immagini
-4. Cliccare "Publish" → sito aggiornato in ~30 secondi
+## Deploy (automatico)
+Il deploy avviene da **GitHub Actions** (`.github/workflows/deploy.yml`) a ogni push su `main`:
+1. `npm ci`
+2. `npm run build`
+3. `wrangler pages deploy _site --project-name=buildhubitalia --branch=main`
 
-## Pagina Chi Siamo — struttura finale (16/06/2026)
+Il workflow usa **due secret del repository GitHub**: un token API Cloudflare (permesso *Cloudflare Pages: Edit*) e l'ID dell'account Cloudflare.
+
+Deploy manuale (fallback):
+```bash
+npm run build
+npx wrangler pages deploy _site --project-name=buildhubitalia --branch=main
+```
+
+> Il progetto Pages è di tipo **Direct Upload** (nessuna integrazione Git nativa): il deploy
+> automatico è garantito dal workflow GitHub Actions, **non** da Cloudflare.
+
+## Variabili d'ambiente (Cloudflare Pages → Variables)
+`RESEND_API_KEY`, `CONTACT_FROM`, `CONTACT_TO`, `GITHUB_PAT`, `GITHUB_REPO`.
+
+## Per il cliente (modifiche via CMS)
+1. Aprire `buildhubitalia.com/gestione`
+2. Inserire la password dell'area riservata
+3. Modificare testi → **Pubblica** (committa su GitHub → deploy automatico)
+
+### Collezioni CMS
+- **Pagine I file singoli** (backend `format: yaml-frontmatter` per `.njk`, `format: json` per `contact.json`):
+  Home, Chi Siamo, Contatti, Contatti Footer (IT) · Home EN, About EN, Contact EN
+- **Collezioni a cartella** (`extension: md`): Servizi IT, Services EN, Progetti IT, Projects EN
+
+> I campi non obbligatori usano `required: false`: se lasciati vuoti, il template applica il `default`.
+> Salvare una pagina **non** danneggia il corpo del template (verificato): Decap riscrive solo il frontmatter.
+
+## Pagina Chi Siamo — struttura finale
 1. **Hero** — "Un unico punto di riferimento per il tuo progetto" + accento decorativo
 2. **Storia** — testo full-width centrato (2 paragrafi)
-3. **Approccio** — 5 bullet con check (riposizionato dopo Storia)
+3. **Approccio** — 5 bullet con check
 4. **Valori** — 3 card (Unico Referente, Coordinamento & Controllo, Comunicazione & Supporto)
-5. **Visione + Missione** — fuse in un'unica sezione a 2 colonne, ciascuna con icona
-6. **Territorio** — invariato (sfondo primary)
-7. **CTA finale** — "Parlaci del tuo progetto" → bottone Contattaci
+5. **Visione + Missione** — sezione a 2 colonne con icona
+6. **Territorio** — sfondo primary
+7. **CTA finale** — "Parlaci del tuo progetto" → Contatti
 
 ## Navbar
-- **Header** — `<nav class="site-navbar">`, fisso in alto, blu (#021164), altezza 90px desktop, 70px mobile
-- **Clip-path SVG** — maschera vettoriale nativa tramite `clip-path: url(#webuild-curve)`. Il tracciato definito in `objectBoundingBox` taglia la barra blu al centro con curve fluide concave: la navbar segue fedelmente la geometria Webuild
-- **Logo** — posizionato in `.nav-brand-center` (absolute, left 50%, top 0, transform translateX), width 220px, height 110px, z-index 1001. Logo max-height 75px
-- **Menu** — 2 blocchi simmetrici (`<ul class="nav-menu">`) separati dal logo centrale, gap 40px, font-weight 700, uppercase, letter-spacing 1.2px, width 38% ciascuno
-- **Shadow** — `box-shadow: 0 4px 20px rgba(0,0,0,0.15)`
-- **Language switcher** — spostato dal navbar al footer su mobile/tablet (< 1023px), rimane in navbar solo su desktop. Nel footer posizionato accanto a Privacy/Cookie Policy links
+- `<nav class="site-navbar">`, fisso in alto, blu (#021164), 90px desktop / 70px mobile
+- **Clip-path SVG** — maschera `clip-path: url(#webuild-curve)` (curva Webuild)
+- **Logo** in `.nav-brand-center` (absolute, left 50%, translateX), width 220px
+- **Menu** — 2 blocchi simmetrici separati dal logo centrale, uppercase, letter-spacing 1.2px
+- **Language switcher** — nel footer su mobile/tablet (< 1023px), in navbar su desktop
 
-## SEO implementato
-- **Sitemap.xml** — `src/sitemap.njk` (14 URL, con priorità e changefreq)
-- **Robots.txt** — `src/robots.njk` (Allow: /, Disallow: /admin/)
-- **Google Search Console** — meta tag in `base.njk` (attivo se `site.search_console_meta` valorizzato)
-- **Google Analytics GA4** — gtag.js in `base.njk` (attivo se `site.ga_id` valorizzato)
-- **Canonical tag** — `src/_includes/base.njk` (basato su `site.url + page.url`)
-- **Open Graph** — og:title, og:description, og:url, og:image, og:locale
-- **Twitter Card** — summary_large_image
-- **JSON-LD** — Organization schema con indirizzo e contatto
-- **Google Fonts** — caricati via preconnect + link (non più @import)
-- **Meta description** — aggiornata in chi-siamo.njk e en/about.njk
-- **Minificazione HTML** — via `html-minifier-terser` (transform Eleventy)
-- **Minificazione CSS/JS** — via `csso` + `terser` (post-build script)
+## SEO
+- **Sitemap.xml** (`src/sitemap.njk`), **Robots.txt** (`src/robots.njk`)
+- **GA4** (gtag in `base.njk`, attivo se `site.ga_id`) · **Search Console** (meta, attivo se `site.search_console_meta`)
+- **Canonical**, **Open Graph**, **Twitter Card**, **JSON-LD** Organization
+- **Google Fonts** via preconnect + link
+- **Minificazione**: HTML (`html-minifier-terser`, transform Eleventy) + CSS/JS (`csso` + `terser`, `minify.js`)
 
 ## Configurazioni post-deploy
-Dopo il deploy su Netlify, attivare GA4 e Search Console:
-1. Ottenere **Measurement ID** (G-XXXXXXXXXX) da https://analytics.google.com
-2. Inserirlo in `src/_data/site.json` → campo `ga_id`
-3. Per Search Console: ottenere meta tag di verifica da https://search.google.com/search-console
-4. Inserirlo in `src/_data/site.json` → campo `search_console_meta`
-5. Oppure: verificare dominio via DNS (record TXT) — non serve modificare codice
+- **GA4:** Measurement ID → `src/_data/site.json` → `ga_id`
+- **Search Console:** meta di verifica → `src/_data/site.json` → `search_console_meta` (oppure verifica DNS via record TXT)
 
-## Consegna (da fare dopo il push)
-- [ ] Connettere repository a Netlify (root: `buildhub-site/`, build: `npm run build`, publish: `_site/`)
-- [ ] Abilitare Netlify Identity + Git Gateway
-- [ ] Invitare il cliente come utente CMS (email)
-- [ ] Puntare DNS `buildhubitalia.com` a Netlify
+## Email
+- **Ricezione:** `info@buildhubitalia.com` (Cloudflare Email Routing) → inoltro a `buildhubitalia@gmail.com`
+- **Invio form:** Resend, da `noreply@buildhubitalia.com`

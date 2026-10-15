@@ -8,28 +8,28 @@ Sito vetrina statico bilingue (IT/EN) per **Build Hub**, azienda di Project Mana
 
 - **Static site generator:** [Eleventy](https://www.11ty.dev/) (11ty) v3
 - **Template:** Nunjucks
-- **CMS:** Decap CMS (pannello admin per il cliente)
-- **Hosting:** Netlify (deploy automatico da GitHub)
+- **Hosting:** **Cloudflare Pages** (progetto `buildhubitalia`)
+- **Deploy:** **GitHub Actions** → `wrangler pages deploy` (automatico su push in `main`)
+- **CMS:** **Decap CMS** — pannello di gestione in `/gestione` (gate con password + backend `proxy`)
+- **Funzioni serverless:** Cloudflare Pages Functions (`functions/`) — form contatti, proxy CMS, OAuth admin
+- **Email transazionali:** [Resend](https://resend.com) (invio form contatti)
+- **Email di ricezione:** **Cloudflare Email Routing** (`info@buildhubitalia.com` → Gmail)
 - **CSS:** Vanilla CSS
-- **Mappa:** Leaflet con tiles CARTO dark_all
-- **Geocoding:** Nominatim (OSM)
-- **Routing:** OSRM
+- **Mappa:** Leaflet con tiles **ESRI Dark Gray** (`services.arcgisonline.com`)
+- **Geocoding:** Nominatim (OSM) · **Routing:** OSRM · **Geolocalizzazione:** pulsante "Usa la mia posizione"
 
 ## Funzionalità implementate
 
-- **Mappa interattiva** Leaflet con tile layer CARTO dark_all, marker gold personalizzato per la sede Build Hub (Catania), popup al click
-- **Geocoding** con Nominatim — campi partenza/destinazione con autocomplete (via + città + regione)
+- **Mappa interattiva** Leaflet con tile layer ESRI Dark Gray, marker per la sede Build Hub (Catania)
+- **Ricerca indirizzi** con Nominatim — campi partenza/destinazione con autocomplete
 - **Calcolo percorso** OSRM — distanza (km) e durata (min), polyline sulla mappa, auto-fit bounds
-- **Click sulla mappa** per impostare waypoint
-- **Scroll zoom** disabilitato di default, abilitato su hover
-- **Pannello routing** collapsibile (nascosto di default, si apre automaticamente al calcolo del percorso)
-- **Form contatti** con validazione bilingue, privacy checkbox con link alla privacy policy, disclaimer GDPR (ritenzione 24 mesi, diritto di cancellazione)
-- **Cookie policy** con disclosure dei servizi terzi reali (Google Fonts, Leaflet/CARTO tiles, Nominatim, OSRM)
-- **SEO** — Canonical tag, Open Graph, Twitter Card, JSON-LD Organization schema
-- **Statistiche automatiche** — Progetti Completati (conteggio progetti CMS), Anni di Esperienza (dal 2026), Servizi Offerti (conteggio servizi CMS)
-- **Progetti e Servizi** gestiti via Decap CMS (creare, modificare, eliminare)
-- **Pagine About/Chi Siamo** interamente editabili via CMS (storia, approccio, visione/missione, valori, CTA, territorio)
-- **Contatti footer** editabili via CMS (indirizzo, telefono, email) — si riflettono su tutto il sito incluso JSON-LD SEO
+- **"Usa la mia posizione"** — geolocalizzazione del browser come punto di partenza
+- **Click sulla mappa** per impostare waypoint · scroll zoom su hover · pannello routing collassabile
+- **Form contatti** con validazione bilingue e disclaimer GDPR (ritenzione 24 mesi) — invio via **Resend**
+- **Cookie policy** con disclosure dei servizi terzi reali (Google Fonts, Leaflet/ESRI, Nominatim, OSRM)
+- **SEO** — Canonical, Open Graph, Twitter Card, JSON-LD Organization, sitemap, robots
+- **Statistiche automatiche** — Progetti Completati, Anni di Esperienza, Servizi Offerti (conteggi CMS)
+- **Contenuti editabili via CMS** — Home, Chi Siamo, Contatti, footer, Servizi e Progetti (IT + EN)
 
 ## Struttura directory
 
@@ -37,37 +37,43 @@ Sito vetrina statico bilingue (IT/EN) per **Build Hub**, azienda di Project Mana
 buildhub-site/
 ├── src/
 │   ├── _data/
-│   │   ├── site.json          # URL, anno
-│   │   └── contact.json       # Indirizzo, telefono, email (editabile via CMS)
+│   │   ├── site.json          # URL, anno, GA, Search Console
+│   │   ├── contact.json       # Indirizzo, telefoni, email (editabile via CMS)
+│   │   └── territorio.json    # Testi sezione territorio
 │   ├── _includes/
-│   │   └── base.njk           # Layout principale (navbar, footer, SEO, JSON-LD)
-│   ├── admin/
-│   │   ├── index.html         # Pannello Decap CMS
-│   │   └── config.yml         # Configurazione CMS
+│   │   ├── base.njk           # Layout principale (navbar, footer, SEO, JSON-LD)
+│   │   └── icons.njk          # Macro icone servizi
+│   ├── gestione/              # Pannello CMS "cliente"
+│   │   ├── index.html         # Gate con password (SHA-256) → carica Decap CMS
+│   │   └── config.yml         # Config Decap (backend: proxy)
+│   ├── admin/                 # Pannello CMS alternativo
+│   │   ├── index.html
+│   │   └── config.yml         # Config Decap (backend: github + OAuth)
 │   ├── css/style.css
 │   ├── js/main.js
 │   ├── img/
-│   ├── index.njk              # Homepage IT
-│   ├── chi-siamo.njk          # Chi Siamo IT (editabile via CMS)
-│   ├── servizi.njk            # Servizi IT (hero editabile via CMS)
-│   ├── progetti.njk           # Progetti IT (hero editabile via CMS)
-│   ├── contatti.njk           # Contatti IT (hero editabile via CMS + mappa + routing + form)
+│   ├── index.njk              # Homepage IT (editabile)
+│   ├── chi-siamo.njk          # Chi Siamo IT (editabile)
+│   ├── servizi.njk            # Servizi IT (itera su collections.services_it)
+│   ├── progetti.njk           # Progetti IT (itera su collections.projects_it)
+│   ├── contatti.njk           # Contatti IT (editabile + mappa + routing + form)
 │   ├── privacy.njk            # Privacy Policy IT
 │   ├── cookie.njk             # Cookie Policy IT
-│   ├── en/
-│   │   ├── index.njk          # Homepage EN
-│   │   ├── about.njk          # About Us EN (editabile via CMS)
-│   │   ├── services.njk       # Services EN (hero editabile via CMS)
-│   │   ├── projects.njk       # Projects EN (hero editabile via CMS)
-│   │   ├── contact.njk        # Contact EN (hero editabile via CMS)
-│   │   ├── privacy.njk        # Privacy Policy EN
-│   │   └── cookie.njk         # Cookie Policy EN
-│   ├── services_it/           # Servizi IT (8 file .md — editabili via CMS)
-│   ├── services_en/           # Services EN (8 file .md — editabili via CMS)
-│   └── projects_it/           # Progetti IT (creabili via CMS)
-│       projects_en/           # Projects EN (creabili via CMS)
-├── .eleventy.js
-├── netlify.toml
+│   ├── sitemap.njk / robots.njk / 404.njk
+│   ├── en/                    # index, about, services, projects, contact, privacy, cookie
+│   ├── services_it/           # 8 file .md — servizi IT (collezione CMS)
+│   ├── services_en/           # 8 file .md — servizi EN (collezione CMS)
+│   ├── projects_it/           # Progetti IT (creabili via CMS)
+│   └── projects_en/           # Progetti EN (creabili via CMS)
+├── functions/                 # Cloudflare Pages Functions
+│   ├── _middleware.js         # Redirect host non-canonici → buildhubitalia.com
+│   ├── contact.js             # POST /contact → invio email via Resend
+│   ├── proxy.js               # Backend CMS (legge/scrive su GitHub via GITHUB_PAT)
+│   └── api/auth.js            # OAuth GitHub per il pannello /admin
+├── .github/workflows/deploy.yml  # Auto-deploy su push in main
+├── .eleventy.js               # Config Eleventy + minificazione HTML
+├── minify.js                  # Minifica post-build CSS/JS (csso + terser)
+├── wrangler.toml              # Config Cloudflare Pages
 ├── package.json
 └── .gitignore
 ```
@@ -75,36 +81,71 @@ buildhub-site/
 ## Comandi
 
 ```bash
-npm run build    # Genera il sito in _site/
+npm run build    # Genera il sito in _site/ (+ minifica CSS/JS)
 npm run serve    # Server locale con live-reload su http://localhost:8080
 ```
 
-## Cosa può modificare il cliente via CMS
+## Deploy (automatico)
 
-| Pagina | Cosa modifica |
+Il deploy è **automatico**: ogni `push` sul branch `main` avvia il workflow
+`.github/workflows/deploy.yml`, che esegue:
+
+1. `npm ci`
+2. `npm run build` (Eleventy + minify)
+3. `wrangler pages deploy _site --project-name=buildhubitalia --branch=main`
+
+Il workflow legge **due secret del repository GitHub** (Settings → Secrets and variables → Actions):
+
+- un **token API Cloudflare** con permesso *Account → Cloudflare Pages → Edit*
+- l'**ID dell'account Cloudflare** che possiede il progetto
+
+> Per pubblicare una modifica è quindi sufficiente `git push` (o un salvataggio dal CMS,
+> che committa su GitHub e innesca lo stesso workflow).
+
+### Deploy manuale (fallback)
+
+```bash
+npm run build
+npx wrangler pages deploy _site --project-name=buildhubitalia --branch=main
+```
+
+## Variabili d'ambiente (Cloudflare Pages → Settings → Variables)
+
+| Variabile | Uso |
 |---|---|
-| **Homepage** (IT/EN) | Hero (subtitle, tagline, CTA), Valori (3 card), CTA finale |
-| **Chi Siamo / About Us** | Tutti i testi: hero, storia, approccio (5 punti), visione, missione, valori (3 card), CTA, territorio |
-| **Servizi / Services** | Titolo e sottotitolo hero |
-| **Progetti / Projects** | Titolo e sottotitolo hero |
-| **Contatti / Contact** | Titolo e sottotitolo hero |
-| **Footer** | Indirizzo, telefono, email |
-| **Servizi (singoli)** | Creare, modificare, eliminare |
-| **Progetti (singoli)** | Creare, modificare, eliminare |
+| `RESEND_API_KEY` | Invio email del form contatti |
+| `CONTACT_FROM` | Mittente (default `noreply@buildhubitalia.com`) |
+| `CONTACT_TO` | Destinatario (default `info@buildhubitalia.com`) |
+| `GITHUB_PAT` | Token GitHub per il CMS proxy (lettura/scrittura contenuti) |
+| `GITHUB_REPO` | Repo CMS (default `nicogrippaldi17-oss/buildhubitalia`) |
 
-## Come accedere al CMS
+## CMS — cosa può modificare il cliente
 
-1. Aprire `buildhubitalia.com/admin`
-2. Inserire l'email → ricevere link magico (nessuna password)
-3. Modificare i contenuti → cliccare "Publish"
-4. Il sito si aggiorna automaticamente in ~30 secondi
+Pannello: `https://buildhubitalia.com/gestione`
 
-## Deploy su Netlify
+| Gruppo | Cosa modifica |
+|---|---|
+| **Home** (IT/EN) | Hero (subtitle, tagline, CTA), Valori (3 card), CTA finale |
+| **Chi Siamo / About EN** | Hero, storia, approccio (5 punti), visione, missione, valori (3 card), CTA, territorio |
+| **Contatti / Contact EN** | Hero + sezione "Cosa succede dopo" (3 step) |
+| **Contatti Footer** | Indirizzo, telefoni, email (footer di tutto il sito + JSON-LD) |
+| **Servizi IT / Services EN** | Singoli servizi: creare, modificare, eliminare |
+| **Progetti IT / Projects EN** | Singoli progetti: creare, modificare, eliminare |
 
-1. Push del repository su GitHub
-2. Connettere a Netlify:
-   - Root directory: `buildhub-site/`
-   - Build command: `npm run build`
-   - Publish directory: `_site/`
-3. Abilitare **Netlify Identity** → **Git Gateway**
-4. Invitare il cliente come utente (Settings → Identity → Invite users)
+Alcuni campi sono opzionali: se lasciati vuoti, la pagina usa i valori predefiniti del template.
+
+### Accesso al CMS
+
+1. Aprire `https://buildhubitalia.com/gestione`
+2. Inserire la **password** dell'area riservata
+3. Modificare i contenuti → **Pubblica**
+4. Il workflow di deploy parte da solo in pochi secondi
+
+> Nota: navigando tra le pagine *dentro* il CMS può capitare di vedere per un attimo i dati
+> della pagina precedente (cache interna di Decap). In quel caso fare un refresh completo
+> del browser (`⌘R`).
+
+## Email
+
+- **Ricezione:** `info@buildhubitalia.com` (Cloudflare Email Routing) → inoltro a `buildhubitalia@gmail.com`
+- **Invio (form contatti):** Resend, mittente `noreply@buildhubitalia.com`, destinatario `info@buildhubitalia.com`

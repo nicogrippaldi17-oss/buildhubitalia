@@ -10,9 +10,10 @@ Documento destinato al cliente: aggiornare i punti spuntati man mano che vengono
 | Voce | Stato |
 | --- | --- |
 | Sito online su `buildhubitalia.com` e `www.buildhubitalia.com` | ✅ Attivo (Cloudflare Pages, HTTPS, SSL) |
-| Redirect da HTTP a HTTPS | ✅ Attivo |
-| CMS per modifiche contenuti (`/gestione`) | ✅ Funzionante |
-| Form di contatto (email a buildhubitalia@gmail.com) | ✅ Funzionante |
+| Redirect da HTTP a HTTPS e da `www.buildhubitalia.it` al dominio principale | ✅ Attivo |
+| Deploy automatico su push (GitHub Actions) | ✅ Attivo |
+| CMS per modifiche contenuti (`/gestione`) | ✅ Funzionante (Home, Chi Siamo, Contatti, footer, Servizi, Progetti) |
+| Form di contatto (email a `info@buildhubitalia.com` → Gmail) | ✅ Funzionante (invio via Resend + Email Routing) |
 | Google Analytics 4 con banner consenso cookie | ✅ Configurato e conforme |
 | Sitemap inviata a Google Search Console | ✅ 14 URL |
 | Privacy Policy e Cookie Policy (IT + EN) | ✅ Online, in corso di completamento (vedi §2) |
@@ -66,23 +67,9 @@ Per coerenza con quanto dichiarato nella Privacy/Cookie Policy (dati conservati 
 
 ---
 
-## 3. Pulizia servizi legacy (opzionale ma consigliata)
+## 3. Pulizia servizi legacy (opzionale)
 
-> Questa sezione riguarda vecchi servizi non più in uso. Non blocca il lancio,
-> ma evita confusione e costi residui.
-
-### 3.1 Netlify
-
-Il sito era originariamente ospitato su Netlify. Il sito Netlify **non è più in uso** ed è
-consigliabile eliminarlo per evitare confusione:
-
-1. Accedere a https://app.netlify.com con l'account utilizzato in precedenza
-2. Selezionare il sito **buildhubitalia**
-3. Andare su **Site settings → Danger zone → Delete site**
-4. Confermare l'eliminazione
-5. (Facoltativo) Se non si usano altri progetti su Netlify, è possibile eliminare anche l'account: **avatar in alto a destra → Account settings → Danger zone → Delete account**
-
-### 3.2 Vecchio sottodominio Cloudflare Pages
+### 3.1 Vecchio sottodominio Cloudflare Pages
 
 Il sottodominio `buildhubitalia.pages.dev` era occupato da un progetto "orfano"
 creato con l'account personale **salvograsso93@gmail.com** (usato solo in fase di test).
@@ -114,8 +101,8 @@ Settings → Danger zone → Delete project). Verificato: il dominio ora rispond
 
 - [ ] Homepage IT (`/`) e Homepage EN (`/en/`) caricate correttamente
 - [ ] Tutte le pagine rispondono: Chi Siamo, Servizi, Progetti, Contatti, Privacy, Cookie (IT + EN)
-- [ ] **Form di contatto**: inviare una richiesta di prova e verificare che l'email arrivi a buildhubitalia@gmail.com
-- [ ] **CMS** (`/gestione`): login riuscito, modifica di una pagina pubblicata correttamente
+- [ ] **Form di contatto**: inviare una richiesta di prova e verificare che l'email arrivi a `info@buildhubitalia.com` (poi inoltrata a Gmail)
+- [ ] **CMS** (`/gestione`): accesso con password, modifica di una pagina pubblicata e verifica del deploy automatico
 - [ ] **Mappa contatti**: caricamento mappa, ricerca indirizzo e calcolo percorso
 - [ ] Sito **responsive**: verifica rapida da smartphone (iPhone/Android)
 
@@ -135,7 +122,7 @@ Quando il cliente avrà a disposizione i dati di §2.1, la procedura è:
 2. Aggiornare `privacy.njk` ed `en/privacy.njk` (sezione 1: Titolare)
 3. Rimuovere la nota "verranno integrati a breve"
 4. Aggiornare la data di "Ultimo aggiornamento" alla data corrente
-5. Build → deploy → verifica live
+5. Build → push (deploy automatico) → verifica live
 
 ---
 

@@ -117,6 +117,7 @@ hero_subtitle: "Raccontaci la tua idea. Ti risponderemo con una prima analisi en
                 <div class="search-results" id="searchResults"></div>
                 <input type="text" id="searchEnd" placeholder="Via, città..." autocomplete="off" />
                 <div class="search-results" id="searchResultsEnd"></div>
+                <button class="btn-locate" id="btnLocate">Usa la mia posizione</button>
                 <button class="btn-clear" id="clearRoute">Cancella percorso</button>
                 <div class="route-info" id="routeInfo"></div>
               </div>
@@ -136,10 +137,9 @@ hero_subtitle: "Raccontaci la tua idea. Ti risponderemo con una prima analisi en
     scrollWheelZoom: false
   });
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
-    subdomains: 'abcd',
-    maxZoom: 20
+  L.tileLayer('https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    attribution: '&copy; <a href="https://www.esri.com/">Esri</a>, HERE, Garmin, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 19
   }).addTo(map);
 
   var officeIcon = L.divIcon({
@@ -163,6 +163,7 @@ hero_subtitle: "Raccontaci la tua idea. Ti risponderemo con una prima analisi en
 
   var waypoints = [];
   var routeLine = null;
+  var locateMarker = null;
 
   function nominatimSearch(query, callback) {
     var xhr = new XMLHttpRequest();
@@ -271,10 +272,41 @@ hero_subtitle: "Raccontaci la tua idea. Ti risponderemo con una prima analisi en
   document.getElementById('clearRoute').addEventListener('click', function() {
     waypoints = [];
     if (routeLine) { map.removeLayer(routeLine); routeLine = null; }
+    if (locateMarker) { map.removeLayer(locateMarker); locateMarker = null; }
     document.getElementById('searchStart').value = '';
     document.getElementById('searchEnd').value = '';
     document.getElementById('routeInfo').innerHTML = '';
     map.setView([37.5079, 15.0830], 13);
+  });
+
+  document.getElementById('btnLocate').addEventListener('click', function() {
+    var routeInfo = document.getElementById('routeInfo');
+    if (!navigator.geolocation) {
+      routeInfo.innerHTML = 'Geolocalizzazione non supportata dal browser';
+      return;
+    }
+    routeInfo.innerHTML = 'Rilevamento posizione&hellip;';
+    navigator.geolocation.getCurrentPosition(function(pos) {
+      var lat = pos.coords.latitude;
+      var lon = pos.coords.longitude;
+      waypoints[0] = [lat, lon];
+      document.getElementById('searchStart').value = lat.toFixed(4) + ', ' + lon.toFixed(4);
+      if (!waypoints[1]) {
+        waypoints[1] = [37.5079, 15.0830];
+        document.getElementById('searchEnd').value = 'Catania (Build Hub)';
+      }
+      if (locateMarker) map.removeLayer(locateMarker);
+      locateMarker = L.circleMarker([lat, lon], {
+        radius: 8,
+        color: '#fff',
+        weight: 2,
+        fillColor: '#0264D8',
+        fillOpacity: 1
+      }).addTo(map);
+      getRoute(waypoints[0][1], waypoints[0][0], waypoints[1][1], waypoints[1][0]);
+    }, function() {
+      routeInfo.innerHTML = 'Impossibile rilevare la posizione. Consenti l\'accesso e riprova.';
+    }, { enableHighAccuracy: true, timeout: 10000 });
   });
 
   map.on('mouseenter', function() { map.scrollWheelZoom.enable(); });

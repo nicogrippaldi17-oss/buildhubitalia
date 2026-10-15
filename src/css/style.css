@@ -1731,6 +1731,12 @@ h1, h2, h3, h4 {
   margin-top: 4px;
 }
 
+.routing-body .btn-locate {
+  background: #021164;
+  color: #fff;
+  margin-top: 4px;
+}
+
 .routing-body button:hover { opacity: 0.85; }
 
 .routing-body .route-info {

@@ -14,10 +14,11 @@ logo_url: "/img/logo.png"
 locale: "it"
 
 collections:
-  # ══════════════ PAGINE IT (una raccolta per pagina) ══════════════
+  # ══════════════ PAGINE IT ══════════════
   - name: "home_it"
     label: "Home"
-    description: "🏠 Testi della homepage (IT). ⚠️ Le modifiche qui NON si riflettono sulla versione EN."
+    description: "🏠 Testi della homepage. ⚠️ Le modifiche qui NON si riflettono sulla versione EN."
+    format: "yaml-frontmatter"
     create: false
     delete: false
     files:
@@ -49,7 +50,8 @@ collections:
 
   - name: "chisiamo_it"
     label: "Chi Siamo"
-    description: "👥 Testi della pagina Chi Siamo (IT). ⚠️ Le modifiche qui NON si riflettono sulla versione EN."
+    description: "👥 Testi della pagina Chi Siamo. ⚠️ Le modifiche qui NON si riflettono sulla versione EN."
+    format: "yaml-frontmatter"
     create: false
     delete: false
     files:
@@ -90,42 +92,10 @@ collections:
           - { label: "Titolo Territorio", name: "territorio_title", widget: "string", description: "📍 Titolo della sezione territorio (sfondo blu, in fondo)." }
           - { label: "Testo Territorio", name: "territorio_text", widget: "text", description: "📍 Testo sotto il titolo nella sezione territorio." }
 
-  - name: "servizi_pagina_it"
-    label: "Pagina Servizi"
-    description: "🛠️ Testi introduttivi della pagina Servizi (IT). Le schede dei singoli servizi sono nella raccolta 'Servizi IT'."
-    create: false
-    delete: false
-    files:
-      - label: "Pagina Servizi"
-        name: "servizi"
-        file: "src/servizi.njk"
-        fields:
-          - { label: "Titolo SEO", name: "title", widget: "string", description: "📍 Barra del browser e risultati Google. Massimo 60 caratteri." }
-          - { label: "Meta Description", name: "description", widget: "text", required: false, description: "📍 Descrizione nei risultati Google. Max 155-160 caratteri." }
-          - { label: "Titolo Hero", name: "hero_title", widget: "string", description: "📍 Titolo grande nella hero della pagina Servizi." }
-          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string", description: "📍 Sottotitolo sotto il titolo nella hero." }
-          - { label: "Titolo CTA Finale", name: "cta_final_title", widget: "string", default: "Non sai qual è il servizio giusto per te?", description: "📍 Titolo del CTA in fondo alla pagina, dopo tutti i servizi." }
-          - { label: "Testo CTA Finale", name: "cta_final_text", widget: "text", default: "Raccontaci il tuo progetto. Ti ascolteremo, analizzeremo le tue esigenze e ti guideremo verso la soluzione migliore, senza impegno.", description: "📍 Testo sotto il titolo CTA finale." }
-          - { label: "Bottone CTA Finale", name: "cta_final_button", widget: "string", default: "Parlaci del tuo progetto", description: "📍 Testo del pulsante CTA finale." }
-
-  - name: "progetti_pagina_it"
-    label: "Pagina Progetti"
-    description: "📁 Testi introduttivi della pagina Progetti (IT). I singoli progetti sono nella raccolta 'Progetti IT'."
-    create: false
-    delete: false
-    files:
-      - label: "Pagina Progetti"
-        name: "progetti"
-        file: "src/progetti.njk"
-        fields:
-          - { label: "Titolo SEO", name: "title", widget: "string", description: "📍 Barra del browser e risultati Google. Massimo 60 caratteri." }
-          - { label: "Meta Description", name: "description", widget: "text", required: false, description: "📍 Descrizione nei risultati Google. Max 155-160 caratteri." }
-          - { label: "Titolo Hero", name: "hero_title", widget: "string", description: "📍 Titolo grande nella hero della pagina Progetti." }
-          - { label: "Sottotitolo Hero", name: "hero_subtitle", widget: "string", description: "📍 Sottotitolo sotto il titolo nella hero." }
-
   - name: "contatti_it"
     label: "Contatti"
-    description: "📞 Testi della pagina Contatti (IT), form e sezione 'Cosa succede dopo'. ⚠️ Le modifiche qui NON si riflettono sulla versione EN."
+    description: "📞 Testi della pagina Contatti, form e sezione 'Cosa succede dopo'. ⚠️ Le modifiche qui NON si riflettono sulla versione EN."
+    format: "yaml-frontmatter"
     create: false
     delete: false
     files:
@@ -148,6 +118,7 @@ collections:
   - name: "contatti_footer"
     label: "Contatti Footer"
     description: "📍 Recapiti mostrati nel footer di ogni pagina (indirizzo, telefoni, email)."
+    format: "json"
     create: false
     delete: false
     files:
@@ -160,10 +131,11 @@ collections:
           - { label: "Telefono 2", name: "phone2", widget: "string", required: false, description: "📍 Numero di telefono secondario nel footer (opzionale)." }
           - { label: "Email", name: "email", widget: "string", description: "📍 Email nel footer di ogni pagina." }
 
-  # ══════════════ PAGINE EN (una raccolta per pagina) ══════════════
+  # ══════════════ PAGINE EN ══════════════
   - name: "home_en"
     label: "Home EN"
     description: "🏠 Homepage texts (EN). ⚠️ Changes here do NOT apply to the IT version."
+    format: "yaml-frontmatter"
     create: false
     delete: false
     files:
@@ -196,6 +168,7 @@ collections:
   - name: "about_en"
     label: "About EN"
     description: "👥 About Us page texts (EN). ⚠️ Changes here do NOT apply to the IT version."
+    format: "yaml-frontmatter"
     create: false
     delete: false
     files:
@@ -236,42 +209,10 @@ collections:
           - { label: "Territory Title", name: "territorio_title", widget: "string", description: "📍 Title of the territory section (blue background, bottom)." }
           - { label: "Territory Text", name: "territorio_text", widget: "text", description: "📍 Text below the title in the territory section." }
 
-  - name: "services_pagina_en"
-    label: "Services EN (pagina)"
-    description: "🛠️ Services page intro texts (EN). Individual services live in the 'Services EN' collection."
-    create: false
-    delete: false
-    files:
-      - label: "Services"
-        name: "services"
-        file: "src/en/services.njk"
-        fields:
-          - { label: "SEO Title", name: "title", widget: "string", description: "📍 Browser tab and Google results. Max 60 characters." }
-          - { label: "Meta Description", name: "description", widget: "text", required: false, description: "📍 Google search snippet description. Max 155-160 characters." }
-          - { label: "Hero Title", name: "hero_title", widget: "string", description: "📍 Large title in the Services hero section." }
-          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string", description: "📍 Subtitle below the title in the hero." }
-          - { label: "CTA Final Title", name: "cta_final_title", widget: "string", default: "Not sure which service is right for you?", description: "📍 Title of the CTA at the bottom of the page, after all services." }
-          - { label: "CTA Final Text", name: "cta_final_text", widget: "text", default: "Tell us about your project. We will listen, analyse your needs and guide you towards the best solution, with no obligation.", description: "📍 Text below the final CTA title." }
-          - { label: "CTA Final Button", name: "cta_final_button", widget: "string", default: "Tell us about your project", description: "📍 Text on the final CTA button." }
-
-  - name: "projects_pagina_en"
-    label: "Projects EN (pagina)"
-    description: "📁 Projects page intro texts (EN). Individual projects live in the 'Projects EN' collection."
-    create: false
-    delete: false
-    files:
-      - label: "Projects"
-        name: "projects"
-        file: "src/en/projects.njk"
-        fields:
-          - { label: "SEO Title", name: "title", widget: "string", description: "📍 Browser tab and Google results. Max 60 characters." }
-          - { label: "Meta Description", name: "description", widget: "text", required: false, description: "📍 Google search snippet description. Max 155-160 characters." }
-          - { label: "Hero Title", name: "hero_title", widget: "string", description: "📍 Large title in the Projects hero section." }
-          - { label: "Hero Subtitle", name: "hero_subtitle", widget: "string", description: "📍 Subtitle below the title in the hero." }
-
   - name: "contact_en"
     label: "Contact EN"
     description: "📞 Contact page texts (EN), form and 'What happens next' section. ⚠️ Changes here do NOT apply to the IT version."
+    format: "yaml-frontmatter"
     create: false
     delete: false
     files:
@@ -291,7 +232,7 @@ collections:
           - { label: "Step 3 Title", name: "step3_title", widget: "string", default: "Receive plan and quote", description: "📍 Title of step 3 in the 'What happens next' section." }
           - { label: "Step 3 Text", name: "step3_text", widget: "text", default: "We present you with a clear roadmap, complete with timelines, operational phases and a transparent cost estimate. No surprises, no strings attached.", description: "📍 Description text below the step 3 title." }
 
-  # ══════════════ COLLEZIONI A CARTELLA (voci ripetibili) ══════════════
+  # ══════════════ COLLEZIONI A CARTELLA ══════════════
   - name: "services_it"
     label: "Servizi IT"
     label_singular: "Servizio"

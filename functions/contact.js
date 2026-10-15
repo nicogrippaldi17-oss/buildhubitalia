@@ -69,7 +69,7 @@ export async function onRequest(context) {
       },
       body: JSON.stringify({
         from: `Build Hub <${env.CONTACT_FROM || 'noreply@buildhubitalia.com'}>`,
-        to: env.CONTACT_TO || 'buildhubitalia@gmail.com',
+        to: env.CONTACT_TO || 'info@buildhubitalia.com',
         subject: `Nuova richiesta da ${nome}`,
         html
       })
